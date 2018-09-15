@@ -1,8 +1,14 @@
 <template>
-  <div id="app-wrapper">
+  <main id="app-wrapper">
     <span class="flag-icon flag-icon-ph flag-icon-squared"></span>
-    <news-headline/>
-  </div>
+
+    <div class="big"><news-headline/></div>
+    <transition-group name="grid-container" class="grid-container" tag="section">
+
+     
+    </transition-group>
+    
+  </main>
 </template>
 
 <script>
@@ -37,5 +43,16 @@ html {
     background-size: contain;
     background-position: 50%;
     background-repeat: no-repeat;
+}
+.grid-container {
+    display: grid;
+    grid-gap: 2em;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 320px));
+    grid-auto-rows: repeat(auto-fit, minmax(auto, 1fr));
+    justify-content: center;
+    grid-auto-flow: dense;
+}
+.big {
+    grid-column: span 2;
 }
 </style>

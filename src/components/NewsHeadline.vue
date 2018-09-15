@@ -1,29 +1,11 @@
 <template>
   <div class="news-headline-wrapper">
-  	<!--<transition-group name="list" class="carousel-container" tag="div">
-		  <article class="article-container" v-for="(article, index) in articles" v-bind:key="index">
-        <a v-bind:title="article.title" 
-           v-bind:href="article.url" 
-           target="_blank" 
-           style="text-decoration:none">
-          <figure class="figure-container">
-            <img v-bind:src="article.urlToImage ? article.urlToImage : placeholder" 
-                v-bind:alt="article.title" />
-            <figcaption>
-              <div class="overlay-title"><h3>{{ article.title }}</h3></div>
-              <span class="overlay-source">source:&nbsp;{{ article.source.name }}</span>
-            </figcaption>
-          </figure>
-          <div class="content-container">{{ article.description }}</div>
-        </a>
-      </article>
-    </transition-group> -->
-    <flickity ref="flickity" :options="flickityOptions">
+    <flickity ref="flickity" 
+              v-if="Object.keys(articles).length > 0" 
+              v-bind:options="flickityOptions">
+
       <article class="article-container" v-for="(article, index) in articles" v-bind:key="index">
-        <a v-bind:title="article.title" 
-           v-bind:href="article.url" 
-           target="_blank" 
-           style="text-decoration:none">
+        <a v-bind:title="article.title" v-bind:href="article.url" target="_blank" style="text-decoration:none">
           <figure class="figure-container">
             <img v-bind:src="article.urlToImage ? article.urlToImage : placeholder" 
                 v-bind:alt="article.title" />
@@ -35,11 +17,52 @@
           <div class="content-container">{{ article.description }}</div>
         </a>
       </article>
-      <button @click="previous()"></button>
-      <button @click="next()"></button>
+
     </flickity>
   </div>
 </template>
+
+<style scoped>
+.news-headline-wrapper {
+    max-width: 640px;
+    max-height: 480px;
+}
+.article-container {
+    display: flex;
+    flex: 0 0 100%;
+    background-color: #fff;
+    transition: all 0.8s ease-in;
+}
+.figure-container {
+    position: relative;
+    width: 640px;
+    height: 420px;
+}
+.figure-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.figure-container .overlay-title {
+    position: absolute;
+    background: rgba(0,0,0,.30); 
+    top: 0; left: 0;
+    width: 100%;
+    height: 13%;
+}
+.figure-container .overlay-title h3 {
+    color: #f2f2f2;
+    padding: 5px;
+}
+.figure-container .overlay-source {
+    position: absolute;
+    color: #fff;
+    padding: 5px;
+    bottom: 0; right: 0;
+}
+</style>
 
 <script>
 import axios from 'axios'
@@ -61,14 +84,13 @@ export default {
 			articles: [],
 			placeholder: 'http://placehold.it/640x480?text=N/A',
       flickityOptions: {
-        initialIndex: 12,
+        initialIndex: null,
         prevNextButtons: true,
         wrapAround: true,
         resize: true,
-        autoplay: 5000,
+        autoplay: 3000,
         contain: true
-      },
-			timer: null
+      }
 		}
 	},
 	mounted() {
@@ -86,17 +108,10 @@ export default {
       });
     },
     next: function() {
-      /*let first = this.articles.shift();
-      this.articles = this.articles.concat(first);*/
       this.$refs.flickity.next();
     },
     previous: function() {
-      /*let last = this.articles.pop();
-      this.articles = [last].concat(this.articles);*/
       this.$refs.flickity.previous();
-    },
-    initRotation: function() {
-      this.timer = setInterval(this.next, 8000);
     }
 	}
 }
