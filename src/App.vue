@@ -1,18 +1,31 @@
 <template>
   <main id="app-wrapper">
-    <flag iso="ph" />
+    <div class="top-header">
+      <div class="header-item">
+        <flag iso="ph" />
+        <span>P</span><span>H</span>
+      </div>
+    </div>
+    <nav class="sticky-navbar">
+      <a v-on:click="getPosts('business')"><span class="item">Business</span></a>
+      <a v-on:click="getPosts('entertainment')"><span class="item">Entertainment</span></a>
+      <a v-on:click="getPosts('health')"><span class="item">Health</span></a>
+      <a v-on:click="getPosts('science')"><span class="item">Science</span></a>
+      <a v-on:click="getPosts('sports')"><span class="item">Sports</span></a>
+      <a v-on:click="getPosts('technology')"><span class="item">Technology</span></a>
+    </nav>
 
       <section class="grid-container">
         <news-headline class="big"></news-headline>
 
         <div class="vertical"></div>
+
       </section>
   <!--
     <transition-group name="grid-container" class="grid-container" tag="section">
       <news-headline></news-headline>
     </transition-group>
   -->
-    
   </main>
 </template>
 
@@ -33,17 +46,63 @@ html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
-    margin: 2.5em 10%;
+    /*margin: 2.5em 10%;*/
     background-color: #f6f6f6;
 }
-*, *:before, *:after {
+*, *::before, *::after {
     box-sizing: content-box;
     padding: 0;
     margin: 0;
 }
+.top-header {
+    width: 100%;
+    height: auto;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+}
+.header-item {
+    
+}
+.sticky-navbar {
+    position: sticky;
+    background-color: #fff;
+    text-align: center;
+    margin: 0px 0px 25px 0px;
+}
+.sticky-navbar a {
+    display: inline-flex;
+    color: #a6a6a6;
+    padding: 18px 20px;
+    text-decoration: none;
+    font-size: 20px;
+}
+.sticky-navbar a:hover {
+    color: #333;
+}
+.item {
+    position: relative;
+    cursor: pointer;
+}
+.item::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: bottom;
+    transition: transform 0.25s ease-out;
+}
+.item:hover::after {
+    background-color: #333;
+    transform: scaleX(1);
+    transform-origin: bottom center;
+}
 .flag-icon-ph {
-    font-size: 100px;
-    border-radius: 6px;
+    font-size: 85px;
+    border-radius: 4px;
     box-sizing: content-box;
     background-size: contain;
     background-position: 50%;
@@ -52,12 +111,14 @@ html {
 .grid-container {
     display: grid;
     grid-gap: 2em;
-    grid-template-columns: repeat(auto-fit, minmax(640px, auto));
+    grid-template-columns: repeat(auto-fit, minmax(320px, auto));
     grid-auto-rows: repeat(auto-fit, minmax(auto, 1fr));
     justify-content: center;
     grid-auto-flow: dense;
 }
 .grid-container .big {
+    min-width: 640px;
+    min-height: auto;
     grid-column: span 2;
 }
 .grid-container .vertical {
