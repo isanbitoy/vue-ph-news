@@ -1,9 +1,13 @@
 <template>
   <main id="app-wrapper">
-    <div class="top-header">
-      <div class="header-item">
-        <flag iso="ph" />
-        <span>P</span><span>H</span>
+    <div class="top-banner">
+      <div>
+        <div><flag iso="ph" /></div>
+        <div class="banner-item" style="padding:5px">
+          <span style="color:blue">P</span><span style="color:red">H</span>
+          <span>News Portal</span>
+          <h2>All fresh headlines from Philippines</h2>
+        </div>
       </div>
     </div>
     <nav class="sticky-navbar">
@@ -54,16 +58,34 @@ html {
     padding: 0;
     margin: 0;
 }
-.top-header {
+.top-banner {
     width: 100%;
     height: auto;
     top: 0;
     left: 0;
     background-color: #fff;
 }
-.header-item {
-    
+.top-banner > div {
+    display: flex;
+    padding: 1.5em 10%;
 }
+.flag-icon-ph {
+    font-size: 85px;
+    border-radius: 4px;
+    box-sizing: content-box;
+    background-size: contain;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    border: 1px solid #fafafa;
+}
+.banner-item span {
+    font-size: 45px;
+    font-weight: bold;
+    letter-spacing: -2px;
+}
+
+
+/*sticky navigaton bar*/
 .sticky-navbar {
     position: sticky;
     background-color: #fff;
@@ -100,14 +122,8 @@ html {
     transform: scaleX(1);
     transform-origin: bottom center;
 }
-.flag-icon-ph {
-    font-size: 85px;
-    border-radius: 4px;
-    box-sizing: content-box;
-    background-size: contain;
-    background-position: 50%;
-    background-repeat: no-repeat;
-}
+
+/*grid container*/
 .grid-container {
     display: grid;
     grid-gap: 2em;
