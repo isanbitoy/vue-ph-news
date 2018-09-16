@@ -5,10 +5,12 @@
               v-bind:options="flickityOptions">
 
       <article class="article-container" v-for="(article, index) in articles" v-bind:key="index">
-        <a v-bind:title="article.title" v-bind:href="article.url" target="_blank" style="text-decoration:none">
+        <a v-bind:title="article.title" 
+           v-bind:href="article.url" 
+           target="_blank" 
+           style="text-decoration:none">
           <figure class="figure-container">
-            <img v-bind:src="article.urlToImage ? article.urlToImage : placeholder" 
-                v-bind:alt="article.title" />
+            <img v-bind:src="article.urlToImage ? article.urlToImage : placeholder" />
             <figcaption>
               <div class="overlay-title"><h3>{{ article.title }}</h3></div>
               <span class="overlay-source">source:&nbsp;{{ article.source.name }}</span>
@@ -62,6 +64,11 @@
     padding: 5px;
     bottom: 0; right: 0;
 }
+.content-container {
+    color: #2c3e50;
+    background-color: #ededed;
+}
+
 </style>
 
 <script>
@@ -87,9 +94,13 @@ export default {
         initialIndex: null,
         prevNextButtons: true,
         wrapAround: true,
+        pageDots: true,
         resize: true,
-        autoplay: 3000,
-        contain: true
+        draggable: false,
+        freeScroll: false,
+        autoPlay: 3000,
+        contain: true,
+        lazyLoad: true
       }
 		}
 	},
