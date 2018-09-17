@@ -65,6 +65,7 @@
     bottom: 0; right: 0;
 }
 .content-container {
+    height: 60px;
     color: #2c3e50;
     background-color: #ededed;
 }
@@ -96,11 +97,10 @@ export default {
         wrapAround: true,
         pageDots: true,
         resize: true,
+        contain: true,
         draggable: false,
         freeScroll: false,
-        autoPlay: 3000,
-        contain: true,
-        lazyLoad: true
+        autoPlay: 3500
       }
 		}
 	},
