@@ -21,8 +21,8 @@
 
       <section class="grid-container">
         <news-headline class="big"></news-headline>
-
-        <div class="vertical"></div>
+        
+        <news-top-story></news-top-story>
 
       </section>
   <!--
@@ -35,11 +35,12 @@
 
 <script>
 import NewsHeadline from './components/NewsHeadline.vue'
-
+import NewsTopStories from './components/NewsTopStories.vue'
 
 export default {
   components: {
-    NewsHeadline
+    NewsHeadline,
+    NewsTopStories
   }
 }
 </script>
@@ -51,7 +52,7 @@ html {
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
     /*margin: 2.5em 10%;*/
-    background-color: #f6f6f6;
+    background-color: #e9e9e9;
 }
 *, *::before, *::after {
     box-sizing: content-box;
@@ -76,14 +77,13 @@ html {
     background-size: contain;
     background-position: 50%;
     background-repeat: no-repeat;
-    border: 1px solid #fafafa;
+    border: 1px solid #ededed;
 }
 .banner-item span {
-    font-size: 45px;
+    font-size: 42px;
     font-weight: bold;
     letter-spacing: -2px;
 }
-
 
 /*sticky navigaton bar*/
 .sticky-navbar {

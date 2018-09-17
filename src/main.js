@@ -1,12 +1,14 @@
 import Vue from 'vue'
 import App from './App.vue'
 import './registerServiceWorker'
-import NewsHeadline from './components/NewsHeadline.vue'
 import FlagIcon from 'vue-flag-icon'
+import NewsHeadline from './components/NewsHeadline.vue'
+import NewsTopStories from './components/NewsTopStories.vue'
 
 Vue.config.productionTip = false
-Vue.component('news-headline', NewsHeadline);
 Vue.use(FlagIcon);
+Vue.component('news-headline', NewsHeadline);
+Vue.component('news-top-story', NewsTopStories);
 
 new Vue({
   render: h => h(App)
