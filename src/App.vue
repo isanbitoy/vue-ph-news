@@ -1,6 +1,6 @@
 <template>
   <main id="app-wrapper">
-    <news-banner />
+    <news-banner></news-banner>
     <nav class="sticky-navbar">
       <a v-on:click="getPosts('business')"><span class="item">Business</span></a>
       <a v-on:click="getPosts('entertainment')"><span class="item">Entertainment</span></a>
@@ -10,12 +10,35 @@
       <a v-on:click="getPosts('technology')"><span class="item">Technology</span></a>
     </nav>
 
-      <section class="grid-container">
-        <news-headline class="big"></news-headline>
+    <section class="grid-container">
+      <div class="news-headline-container">
+        <flickity ref="flickity" 
+              v-if="Object.keys(articleContent).length > 0" 
+              v-bind:options="flickityOptions">
 
-        <news-top-story></news-top-story>
+        <article class="article-container" v-for="(article, index) in articleContent" v-bind:key="index">
+          <a v-bind:title="article.title" 
+           v-bind:href="article.url" 
+           target="_blank" 
+           style="text-decoration:none">
+            <figure class="figure-container">
+              <img v-bind:src="article.urlToImage ? article.urlToImage : placeholder" />
+              <figcaption>
+                <div class="overlay-title"><h3>{{ article.title }}</h3></div>
+                <span class="overlay-source">source:&nbsp;{{ article.source.name }}</span>
+              </figcaption>
+            </figure>
+            <div class="content-container">{{ article.description }}</div>
+          </a>
+        </article>
 
-      </section>
+        </flickity>
+      </div>
+
+      <news-top-story>
+          
+      </news-top-story>
+    </section>
   <!--
     <transition-group name="grid-container" class="grid-container" tag="section">
       <news-headline></news-headline>
@@ -24,13 +47,17 @@
   </main>
 </template>
 
+<script>
+import axios from 'axios'
+import 
+</script>
+
 <style>
 html {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
-    /*margin: 2.5em 10%;*/
     background-color: #e9e9e9;
 }
 *, *::before, *::after {
