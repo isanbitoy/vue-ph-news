@@ -27,10 +27,10 @@
               <img v-bind:src="headline.urlToImage ? headline.urlToImage : placeholder" />
               <figcaption>
                 <div class="overlay-title"><h3>{{ headline.title }}</h3></div>
-                <span class="overlay-source">source:&nbsp;{{ aheadline.source.name }}</span>
+                <span class="overlay-source">source:&nbsp;{{ headline.source.name }}</span>
               </figcaption>
             </figure>
-            <div class="content-container">{{ article.description }}</div>
+            <div class="content-container">{{ headline.description | truncate(160) }}</div>
           </a>
         </article>
 
@@ -58,11 +58,6 @@ import Flickity from 'vue-flickity'
 const BaseUrl = 'https://newsapi.org/v2/top-headlines?country=ph'
 const ApiKey = '643d0a34867c44cc9519671ec2e0dfbd'
 
-/* build the website url
-function buildUrl() {
-  return BaseUrl + "&apiKey=" + ApiKey
-}
-*/
 /*build the website url*/
 function buildUrl(category) {
   return BaseUrl + "&category=" + category + "&apiKey=" + ApiKey
@@ -120,6 +115,14 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    }
+  },
+  filters: {
+    truncate: function(value, limit) {
+      if (value && value.length > limit) {
+        value = value.substring(0, (limit - 3)) + '...';
+      }
+      return value;
     }
   }
 }
@@ -202,8 +205,8 @@ html {
 
 .news-headline-wrapper {
     grid-column: span 2;
-    max-width: 640px;
-    max-height: 480px;
+    max-width: 42em;
+    max-height: 420px;
 }
 .headline-article {
     display: inline-flex;
@@ -214,8 +217,8 @@ html {
 }
 .figure-container {
     position: relative;
-    width: 640px;
-    height: 420px;
+    width: 42em;
+    height: 480px;
 }
 .figure-container img {
     position: absolute;
