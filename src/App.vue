@@ -2,30 +2,32 @@
   <main id="app-wrapper">
     <news-banner></news-banner>
     <nav class="sticky-navbar">
-      <a v-on:click="getPosts('business')"><span class="item">Business</span></a>
-      <a v-on:click="getPosts('entertainment')"><span class="item">Entertainment</span></a>
-      <a v-on:click="getPosts('health')"><span class="item">Health</span></a>
-      <a v-on:click="getPosts('science')"><span class="item">Science</span></a>
-      <a v-on:click="getPosts('sports')"><span class="item">Sports</span></a>
-      <a v-on:click="getPosts('technology')"><span class="item">Technology</span></a>
+      <a v-on:click="getArticle('business')"><span class="item">Business</span></a>
+      <a v-on:click="getArticle('entertainment')"><span class="item">Entertainment</span></a>
+      <a v-on:click="getArticle('health')"><span class="item">Health</span></a>
+      <a v-on:click="getArticle('science')"><span class="item">Science</span></a>
+      <a v-on:click="getArticle('sports')"><span class="item">Sports</span></a>
+      <a v-on:click="getArticle('technology')"><span class="item">Technology</span></a>
     </nav>
 
     <section class="grid-container">
-      <div class="news-headline-container">
+      <div class="news-headline-wrapper">
         <flickity ref="flickity" 
-              v-if="Object.keys(articleContent).length > 0" 
-              v-bind:options="flickityOptions">
+                  v-if="Object.keys(headlineContent).length > 0" 
+                  v-bind:options="flickityOptions">
 
-        <article class="article-container" v-for="(article, index) in articleContent" v-bind:key="index">
-          <a v-bind:title="article.title" 
-           v-bind:href="article.url" 
-           target="_blank" 
-           style="text-decoration:none">
+        <article class="headline-article" 
+                 v-for="(headline, index) in headlineContent" 
+                 v-bind:key="index">
+          <a v-bind:title="headline.title" 
+             v-bind:href="headline.url" 
+             target="_blank" 
+             style="text-decoration:none">
             <figure class="figure-container">
-              <img v-bind:src="article.urlToImage ? article.urlToImage : placeholder" />
+              <img v-bind:src="headline.urlToImage ? headline.urlToImage : placeholder" />
               <figcaption>
-                <div class="overlay-title"><h3>{{ article.title }}</h3></div>
-                <span class="overlay-source">source:&nbsp;{{ article.source.name }}</span>
+                <div class="overlay-title"><h3>{{ headline.title }}</h3></div>
+                <span class="overlay-source">source:&nbsp;{{ aheadline.source.name }}</span>
               </figcaption>
             </figure>
             <div class="content-container">{{ article.description }}</div>
@@ -35,18 +37,17 @@
         </flickity>
       </div>
 
-      <div>
-        <article v-for="(art, index) in articleContent" :key="index">
-          <div>{{ art.title }}</div>
+      <div class="top-story-wrapper">
+        <h3>Top Stories</h3>
+        <article class="top-story-article"
+                 v-for="(topStory, index) in headlineContent" 
+                 v-bind:key="index">
+          <div>{{ topStory.title }}</div>
         </article>
       </div>
       
     </section>
-  <!--
-    <transition-group name="grid-container" class="grid-container" tag="section">
-      <news-headline></news-headline>
-    </transition-group>
-  -->
+
   </main>
 </template>
 
@@ -57,12 +58,13 @@ import Flickity from 'vue-flickity'
 const BaseUrl = 'https://newsapi.org/v2/top-headlines?country=ph'
 const ApiKey = '643d0a34867c44cc9519671ec2e0dfbd'
 
-/* build the website url*/
+/* build the website url
 function buildUrl() {
   return BaseUrl + "&apiKey=" + ApiKey
 }
-
-function buildUrl2(category) {
+*/
+/*build the website url*/
+function buildUrl(category) {
   return BaseUrl + "&category=" + category + "&apiKey=" + ApiKey
 }
 
@@ -72,6 +74,7 @@ export default {
   },
   data: function() {
     return {
+      headlineContent: [],
       articleContent: [],
       placeholder: 'http://placehold.it/640x480?text=N/A',
       flickityOptions: {
@@ -88,24 +91,35 @@ export default {
     }
   },
   mounted() {
-    this.getPosts()
+    this.getHeadline('')
+    this.getArticle('business')
   },
   methods: {
-    getPosts: function() {
-      let url = buildUrl();
-      axios.get(url)
-      .then((response) => {
-        this.articleContent = response.data.articles;
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    getHeadline: function(section) {
+      let headlineUrl = buildUrl(section);
+      axios.get(headlineUrl)
+        .then((response) => {
+          this.headlineContent = response.data.articles;
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
     next: function() {
       this.$refs.flickity.next();
     },
     previous: function() {
       this.$refs.flickity.previous();
+    },
+    getArticle: function(section) {
+      let articleUrl = buildUrl(section);
+      axios.get(articleUrl)
+        .then((response) => {
+          this.articleContent = response.data.articles;
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 }
@@ -186,12 +200,12 @@ html {
     background-color: #ededed;
 }
 
-.news-headline-container {
+.news-headline-wrapper {
     grid-column: span 2;
     max-width: 640px;
     max-height: 480px;
 }
-.article-container {
+.headline-article {
     display: inline-flex;
     width: 100%;
     height: auto;
