@@ -146,6 +146,8 @@ html {
 }
 .news-headline-wrapper {
     flex: 2;
+    max-width: 38em;
+    max-height: 30em;
 }
 
 .top-story-wrapper {
@@ -204,12 +206,13 @@ html {
     margin: 0 10%;
 }
 
+/*
 .news-headline-wrapper {
     grid-column: span 2;
 
     max-width: 42em;
     max-height: 34em;
-}
+}*/
 .headline-article {
     display: inline-flex;
     width: 100%;
@@ -219,8 +222,8 @@ html {
 }
 .figure-container {
     position: relative;
-    width: 42em;
-    height: 31em;
+    width: 38em;
+    height: 27em;
 }
 .figure-container img {
     position: absolute;
@@ -288,7 +291,7 @@ export default {
         initialIndex: null,
         prevNextButtons: true,
         wrapAround: true,
-        pageDots: true,
+        pageDots: false,
         resize: true,
         contain: true,
         draggable: false,
