@@ -10,7 +10,6 @@
       <a v-on:click="getArticle('technology')"><span class="item">Technology</span></a>
     </nav>
 
-  <div class="grid-layout">
     <!-- start of flex layout -->
     <div class="flex-layout">
       <!-- first flex container -->
@@ -53,6 +52,8 @@
       </section>
     </div>
     <!-- end of flex layout -->
+
+  <div class="grid-layout">
     <div class="main-article-wrapper">
       <article class="main-article"
                v-for="(main, index) in mainContent"
@@ -136,8 +137,8 @@ html {
     margin: 0 10%;
 }
 .flex-layout {
-    grid-column: span 3;
     display: flex;
+    margin: 0 10%;
 }
 .flex-container {
     
