@@ -10,51 +10,51 @@
       <a v-on:click="getArticle('technology')"><span class="item">Technology</span></a>
     </nav>
 
-    <!-- start of flex layout -->
-    <div class="flex-layout">
-      <!-- first flex container -->
-      <section class="flex-container news-headline">
-        <flickity ref="flickity" 
-                  v-if="Object.keys(headlineContent).length > 0" 
-                  v-bind:options="flickityOptions">
-          <article class="headline-article" 
+  <!-- start of grid layout -->
+  <div class="grid-layout">
+
+    <!-- first grid container -->
+    <section class="news-headline-section">
+      <flickity ref="flickity" 
+                v-if="Object.keys(headlineContent).length > 0" 
+                v-bind:options="flickityOptions">
+        <article class="headline-article" 
                  v-for="(headline, index) in headlineContent" 
                  v-bind:key="index">
-            <a v-bind:title="headline.title" 
-               v-bind:href="headline.url" 
-               target="_blank" 
-               style="text-decoration:none">
-              <figure class="figure-container">
-                <img v-bind:src="headline.urlToImage ? headline.urlToImage : placeholder" />
-                <figcaption>
-                  <div class="overlay-title"><h3>{{ headline.title }}</h3></div>
-                  <span class="overlay-source">source:&nbsp;{{ headline.source.name }}</span>
-                </figcaption>
-              </figure>
-              <div class="content-container">{{ headline.description | truncate(120) }}</div>
-            </a>
-          </article>
-        </flickity>
-      </section>
-      <!-- second flex container -->
-      <section class="flex-container top-story">
-        <h3>Top Stories</h3>
-        <article class="top-story-article"
-                 v-for="(topStory, index) in headlineContent.slice(0, 6)" 
-                 v-bind:key="index">
-          <a v-bind:title="topStory.title" 
-             v-bind:href="topStory.url" 
+          <a v-bind:title="headline.title" 
+             v-bind:href="headline.url" 
              target="_blank" 
              style="text-decoration:none">
-            <div>{{ topStory.title }}</div>
+            <figure class="figure-container">
+              <img v-bind:src="headline.urlToImage ? headline.urlToImage : placeholder" />
+              <figcaption>
+                <div class="overlay-title"><h3>{{ headline.title }}</h3></div>
+                <span class="overlay-source">source:&nbsp;{{ headline.source.name }}</span>
+              </figcaption>
+            </figure>
+            <div class="content-container">{{ headline.description | truncate(120) }}</div>
           </a>
         </article>
-      </section>
-    </div>
-    <!-- end of flex layout -->
+      </flickity>
+    </section>
 
-  <div class="grid-layout">
-    <div class="main-article-wrapper">
+    <!-- second grid container -->
+    <section class="top-story-section">
+      <h3>Top Stories</h3>
+      <article class="top-story-article"
+               v-for="(topStory, index) in headlineContent.slice(0, 6)" 
+               v-bind:key="index">
+        <a v-bind:title="topStory.title" 
+           v-bind:href="topStory.url" 
+           target="_blank" 
+           style="text-decoration:none">
+          <div>{{ topStory.title }}</div>
+        </a>
+      </article>
+    </section>
+  
+    <!-- third grid container -->
+    <section class="main-article-section">
       <article class="main-article"
                v-for="(main, index) in mainContent"
                v-bind:key="index">
@@ -62,18 +62,23 @@
            v-bind:href="main.url"
            target="_blank"
            style="text-decoration:none">
-          <figure class="">
-            
+          <figure>
+            <img v-bind:src="main.urlToImage ? main.urlToImage : placeholder"
+                 v-bind:alt="main.title" />
+            <figcaption>
+              <div><h3>{{ main.title }}</h3></div>
+            </figcaption>
           </figure>
         </a>
       </article>
-    </div>
-  </div>
+    </section>
 
+  </div>
+  <!-- end of grid layout -->
   </main>
 </template>
 
-<style>
+<style lang="scss">
 html {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -131,27 +136,21 @@ html {
 /*grid layout*/
 .grid-layout {
     display: grid;
-    grid-gap: 2em;
+    grid-gap: 1em;
     grid-template-columns: repeat(auto-fit, minmax(320px, auto));
     grid-auto-rows: repeat(auto-fit, minmax(auto, 1fr));
     margin: 0 10%;
 }
-.flex-layout {
-    display: flex;
-    margin: 0 10%;
-}
-.flex-container {
-    
-}
-.news-headline {
-    flex: 2;
+.news-headline-section {
+    grid-column: 1 / 3;
     max-width: 38em;
     max-height: 30em;
 }
-.top-story {
-    flex: 1;
+.top-story-section {
+    grid-column: 3 / 4;
     background-color: #ededed;
 }
+
 .headline-article {
     display: inline-flex;
     width: 100%;
@@ -193,7 +192,6 @@ html {
     color: #2c3e50;
     padding: 5px;
 }
-
 
 .top-story-article {
     margin: 0 0 15px 0;
