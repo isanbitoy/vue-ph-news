@@ -18,7 +18,7 @@
       <flickity ref="flickity" 
                 v-if="Object.keys(headlineContent).length > 0" 
                 v-bind:options="flickityOptions">
-        <article class="headline-article" 
+        <article class="news-headline" 
                  v-for="(headline, index) in headlineContent" 
                  v-bind:key="index">
           <a v-bind:title="headline.title" 
@@ -41,7 +41,7 @@
     <!-- second grid container -->
     <section class="top-story-section">
       <h3>Top Stories</h3>
-      <article class="top-story-article"
+      <article class="top-story"
                v-for="(topStory, index) in headlineContent.slice(0, 6)" 
                v-bind:key="index">
         <a v-bind:title="topStory.title" 
@@ -78,7 +78,7 @@
   </main>
 </template>
 
-<style lang="scss">
+<style>
 html {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -135,11 +135,12 @@ html {
 
 /*grid layout*/
 .grid-layout {
+    max-width: 1200px;
+    margin: 0 auto;
     display: grid;
     grid-gap: 1em;
-    grid-template-columns: repeat(auto-fit, minmax(320px, auto));
+    grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
     grid-auto-rows: repeat(auto-fit, minmax(auto, 1fr));
-    margin: 0 10%;
 }
 .news-headline-section {
     grid-column: 1 / 3;
@@ -151,7 +152,7 @@ html {
     background-color: #ededed;
 }
 
-.headline-article {
+.news-headline {
     display: inline-flex;
     width: 100%;
     height: auto;
@@ -193,7 +194,7 @@ html {
     padding: 5px;
 }
 
-.top-story-article {
+.top-story {
     margin: 0 0 15px 0;
     border-bottom: 1px solid #111;
 }
