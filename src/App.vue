@@ -2,12 +2,12 @@
   <main id="app-wrapper">
     <news-banner></news-banner>
     <nav class="sticky-navbar">
-      <a v-on:click="getArticle('business')"><span class="item">Business</span></a>
-      <a v-on:click="getArticle('entertainment')"><span class="item">Entertainment</span></a>
-      <a v-on:click="getArticle('health')"><span class="item">Health</span></a>
-      <a v-on:click="getArticle('science')"><span class="item">Science</span></a>
-      <a v-on:click="getArticle('sports')"><span class="item">Sports</span></a>
-      <a v-on:click="getArticle('technology')"><span class="item">Technology</span></a>
+      <a v-on:click="getArticle('business')"><span>Business</span></a>
+      <a v-on:click="getArticle('entertainment')"><span>Entertainment</span></a>
+      <a v-on:click="getArticle('health')"><span>Health</span></a>
+      <a v-on:click="getArticle('science')"><span>Science</span></a>
+      <a v-on:click="getArticle('sports')"><span>Sports</span></a>
+      <a v-on:click="getArticle('technology')"><span>Technology</span></a>
     </nav>
 
   <!-- start of grid layout -->
@@ -78,64 +78,70 @@
   </main>
 </template>
 
-<style>
+<style lang="scss">
+$color: #2c3e50;
+$bg-color: #f8f8f8;
+$white: #ffffff;
+$gray65: #a6a6a6;
+$darkGray: #333333;
+
 html {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #2c3e50;
-    background-color: #f8f8f8;
+    color: $color;
+    background-color: $bg-color;
 }
 *, *::before, *::after {
     box-sizing: content-box;
     padding: 0;
     margin: 0;
 }
-
 /*sticky navigaton bar*/
 .sticky-navbar {
-    position: -webkit-sticky;
-    position: sticky;
+    position: sticky, -webkit-sticky;
     top: 0;
     z-index: 1;
-    background-color: #fff;
+    background-color: $white;
     text-align: center;
     margin: 0px 0px 25px 0px;
-}
-.sticky-navbar a {
-    display: inline-flex;
-    color: #a6a6a6;
-    padding: 12px 18px;
-    text-decoration: none;
-    font-size: 20px;
-}
-.sticky-navbar a:hover {
-    color: #333;
-}
-.item {
-    position: relative;
-    cursor: pointer;
-}
-.item::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    transform: scaleX(0);
-    transform-origin: bottom;
-    transition: transform 0.25s ease-out;
-}
-.item:hover::after {
-    background-color: #333;
-    transform: scaleX(1);
-    transform-origin: bottom center;
+
+    a {
+      display: inline-flex;
+      color: $gray65;
+      padding: 12px 18px;
+      text-decoration: none;
+      font-size: 20px;
+
+      span {
+        position: relative;
+        cursor: pointer;
+      }
+      span::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        transform: scaleX(0);
+        transform-origin: bottom;
+        transition: transform 0.25s ease-out;
+      }
+      span:hover::after {
+        background-color: $darkGray;
+        transform: scaleX(1);
+        transform-origin: bottom center;
+      }
+    }
+    a:hover {
+      color: $darkGray;
+    }
 }
 
 /*grid layout*/
 .grid-layout {
-    max-width: 1200px;
+    /*max-width: 1200px;*/
     margin: 0 auto;
     display: grid;
     grid-gap: 1em;
@@ -144,12 +150,8 @@ html {
 }
 .news-headline-section {
     grid-column: 1 / 3;
-    max-width: 38em;
-    max-height: 30em;
-}
-.top-story-section {
-    grid-column: 3 / 4;
-    background-color: #ededed;
+    /*max-width: 38em;
+    max-height: 30em;*/
 }
 
 .news-headline {
@@ -194,6 +196,10 @@ html {
     padding: 5px;
 }
 
+.top-story-section {
+    grid-column: 3 / 4;
+    background-color: #ededed;
+}
 .top-story {
     margin: 0 0 15px 0;
     border-bottom: 1px solid #111;
