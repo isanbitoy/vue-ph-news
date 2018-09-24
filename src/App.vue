@@ -112,30 +112,29 @@ html {
       padding: 12px 18px;
       text-decoration: none;
       font-size: 20px;
-
-      span {
-        position: relative;
-        cursor: pointer;
-      }
-      span::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 2px;
-        bottom: 0;
-        left: 0;
-        transform: scaleX(0);
-        transform-origin: bottom;
-        transition: transform 0.25s ease-out;
-      }
-      span:hover::after {
-        background-color: $darkGray;
-        transform: scaleX(1);
-        transform-origin: bottom center;
-      }
     }
     a:hover {
       color: $darkGray;
+    }
+    span {
+      position: relative;
+      cursor: pointer;
+    }
+    span::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      transform: scaleX(0);
+      transform-origin: bottom;
+      transition: transform 0.25s ease-out;
+    }
+    span:hover::after {
+      background-color: $darkGray;
+      transform: scaleX(1);
+      transform-origin: bottom center;
     }
 }
 
