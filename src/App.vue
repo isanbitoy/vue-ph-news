@@ -11,9 +11,8 @@
     </nav>
 
   <!-- start of grid layout -->
-  <div class="grid-layout">
+  <div class="grid">
 
-    <!-- first grid container -->
     <section class="news-headline-section">
       <flickity ref="flickity" 
                 v-if="Object.keys(headlineContent).length > 0" 
@@ -36,7 +35,6 @@
       </flickity>
     </section>
 
-    <!-- second grid container -->
     <section class="top-story-section">
       <h3>Top Stories</h3>
       <article v-for="(topStory, index) in headlineContent.slice(0, 8)" v-bind:key="index">
@@ -50,8 +48,10 @@
     </section>
   
     <!-- third grid container -->
-    <section class="main-article-section">
-      <article v-for="(main, index) in mainContent" v-bind:key="index">
+    <!--<div class="main-article-section">-->
+      <article class="main-article-section" 
+               v-for="(main, index) in mainContent" 
+               v-bind:key="index">
         <a v-bind:title="main.title"
            v-bind:href="main.url"
            target="_blank"
@@ -65,7 +65,7 @@
           </figure>
         </a>
       </article>
-    </section>
+    <!--</div>-->
 
   </div>
   <!-- end of grid layout -->
@@ -94,7 +94,8 @@ html {
 }
 
 .sticky-navbar {
-    position: sticky, -webkit-sticky;
+    position: sticky;
+    position: -webkit-sticky;
     top: 0;
     z-index: 1;
     background-color: $white;
@@ -133,12 +134,12 @@ html {
     }
 }
 
-.grid-layout {
+.grid {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
     grid-gap: 1em;
-    grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     grid-auto-rows: repeat(auto-fit, minmax(auto, 1fr));
 
     .news-headline-section {
@@ -201,16 +202,9 @@ html {
     }
 
     .main-article-section {
-      max-width: 20em;
-      max-height: 15em;
+      /*max-width: 20em;
+      max-height: 15em;*/
 
-      article {
-        display: inline-flex;
-        width: 100%;
-        height: auto;
-        background-color: #ededed;
-        box-sizing: border-box;
-      }
       figure {
         position: relative;
         width: 20em;
@@ -226,7 +220,6 @@ html {
     }
 }
 </style>
-
 
 <script>
 import axios from 'axios'
