@@ -56,7 +56,7 @@
   
     <!-- start of grid layout -->
     <div class="grid-layout">
-      <article class="main-article-section" 
+      <article class="main-article" 
                v-for="(main, index) in mainContent" 
                v-bind:key="index">
         <a v-bind:title="main.title"
@@ -74,7 +74,7 @@
       </article>
     </div>
   <!-- end of grid layout -->
-  
+
   </div>
   </main>
 </template>
@@ -88,64 +88,64 @@ $light-gray: #a6a6a6;
 $dark-gray: #333333;
 
 html {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: $color;
-    background-color: $bg-color;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $color;
+  background-color: $bg-color;
 }
 *, *::before, *::after {
-    box-sizing: content-box;
-    padding: 0;
-    margin: 0;
+  box-sizing: content-box;
+  padding: 0;
+  margin: 0;
 }
 
 .sticky-navbar {
-    position: sticky;
-    position: -webkit-sticky;
-    top: 0;
-    z-index: 1;
-    background-color: $white;
-    text-align: center;
-    margin: 0px 0px 25px 0px;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 1;
+  background-color: $white;
+  text-align: center;
+  margin: 0px 0px 25px 0px;
 
-    a {
-      display: inline-flex;
-      color: $light-gray;
-      padding: 12px 18px;
-      text-decoration: none;
-      font-size: 20px;
-    }
-    a:hover {
-      color: $dark-gray;
-    }
-    span {
-      position: relative;
-      cursor: pointer;
-    }
-    span::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 2px;
-      bottom: 0;
-      left: 0;
-      transform: scaleX(0);
-      transform-origin: bottom;
-      transition: transform 0.25s ease-out;
-    }
-    span:hover::after {
-      background-color: $dark-gray;
-      transform: scaleX(1);
-      transform-origin: bottom center;
-    }
+  a {
+    display: inline-flex;
+    color: $light-gray;
+    padding: 12px 18px;
+    text-decoration: none;
+    font-size: 20px;
+  }
+  a:hover {
+    color: $dark-gray;
+  }
+  span {
+    position: relative;
+    cursor: pointer;
+  }
+  span::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: bottom;
+    transition: transform 0.25s ease-out;
+  }
+  span:hover::after {
+    background-color: $dark-gray;
+    transform: scaleX(1);
+    transform-origin: bottom center;
+  }
 }
 
 .main-container {
-    margin: 0 auto;
-    max-width: 1200px;
-}
-.flex-layout {
+  margin: 0 auto;
+  max-width: 1200px;
+
+  .flex-layout {
     .news-headline-section {
       max-width: 38em;
       max-height: 30em;
@@ -202,30 +202,32 @@ html {
         border-bottom: 1px solid #111;
       }
     }
+  }
 }
+
 .grid-layout {
-    display: grid;
-    grid-gap: 1em;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    grid-auto-rows: repeat(auto-fit, minmax(auto, 1fr));
+  display: grid;
+  grid-gap: 1em;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-auto-rows: repeat(auto-fit, minmax(auto, 1fr));
 
-    .main-article-section {
-      /*max-width: 20em;
-      max-height: 15em;*/
+  .main-article {
+    /*max-width: 20em;
+    max-height: 15em;*/
 
-      figure {
-        position: relative;
-        width: 20em;
-        height: 15em;
-      }
-      img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
+    figure {
+      position: relative;
+      width: 20em;
+      height: 15em;
     }
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
 </style>
 
