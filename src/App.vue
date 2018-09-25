@@ -10,45 +10,52 @@
       <a v-on:click="getArticle('technology')"><span>Technology</span></a>
     </nav>
 
-  <!-- start of grid layout -->
-  <div class="grid">
-
-    <section class="news-headline-section">
-      <flickity ref="flickity" 
-                v-if="Object.keys(headlineContent).length > 0" 
-                v-bind:options="flickityOptions">
-        <article v-for="(headline, index) in headlineContent" v-bind:key="index">
-          <a v-bind:title="headline.title" 
-             v-bind:href="headline.url" 
+  <div class="main-container">
+    <!-- start of flex layout -->
+    <div class="flex-layout">
+      <!-- -->
+      <section class="news-headline-section">
+        <flickity ref="flickity" 
+                  v-if="Object.keys(headlineContent).length > 0" 
+                  v-bind:options="flickityOptions">
+          <article v-for="(headline, index) in headlineContent" 
+                   v-bind:key="index">
+            <a v-bind:title="headline.title" 
+               v-bind:href="headline.url" 
+               target="_blank" 
+               style="text-decoration:none">
+              <figure>
+                <img v-bind:src="headline.urlToImage ? headline.urlToImage : placeholder" />
+                <figcaption>
+                  <div><h3>{{ headline.title }}</h3></div>
+                  <span>source:&nbsp;{{ headline.source.name }}</span>
+                </figcaption>
+              </figure>
+              <div class="content-container">
+                {{ headline.description | truncate(120) }}
+              </div>
+            </a>
+          </article>
+        </flickity>
+      </section>
+      <!-- -->
+      <section class="top-story-section">
+        <h3>Top Stories</h3>
+        <article v-for="(topStory, index) in headlineContent.slice(0, 8)" 
+                 v-bind:key="index">
+          <a v-bind:title="topStory.title" 
+             v-bind:href="topStory.url" 
              target="_blank" 
              style="text-decoration:none">
-            <figure>
-              <img v-bind:src="headline.urlToImage ? headline.urlToImage : placeholder" />
-              <figcaption>
-                <div><h3>{{ headline.title }}</h3></div>
-                <span>source:&nbsp;{{ headline.source.name }}</span>
-              </figcaption>
-            </figure>
-            <div class="content-container">{{ headline.description | truncate(120) }}</div>
+            <div>{{ topStory.title }}</div>
           </a>
         </article>
-      </flickity>
-    </section>
-
-    <section class="top-story-section">
-      <h3>Top Stories</h3>
-      <article v-for="(topStory, index) in headlineContent.slice(0, 8)" v-bind:key="index">
-        <a v-bind:title="topStory.title" 
-           v-bind:href="topStory.url" 
-           target="_blank" 
-           style="text-decoration:none">
-          <div>{{ topStory.title }}</div>
-        </a>
-      </article>
-    </section>
+      </section>
+    </div>
+    <!-- end of flex layout -->
   
-    <!-- third grid container -->
-    <!--<div class="main-article-section">-->
+    <!-- start of grid layout -->
+    <div class="grid-layout">
       <article class="main-article-section" 
                v-for="(main, index) in mainContent" 
                v-bind:key="index">
@@ -65,10 +72,10 @@
           </figure>
         </a>
       </article>
-    <!--</div>-->
-
-  </div>
+    </div>
   <!-- end of grid layout -->
+  
+  </div>
   </main>
 </template>
 
@@ -134,16 +141,12 @@ html {
     }
 }
 
-.grid {
-    max-width: 1200px;
+.main-container {
     margin: 0 auto;
-    display: grid;
-    grid-gap: 1em;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    grid-auto-rows: repeat(auto-fit, minmax(auto, 1fr));
-
+    max-width: 1200px;
+}
+.flex-layout {
     .news-headline-section {
-      grid-column: 1 / 3;
       max-width: 38em;
       max-height: 30em;
 
@@ -192,7 +195,6 @@ html {
     }
 
     .top-story-section {
-      grid-column: 3 / 4;
       background-color: #ededed;
 
       article {
@@ -200,6 +202,12 @@ html {
         border-bottom: 1px solid #111;
       }
     }
+}
+.grid-layout {
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-auto-rows: repeat(auto-fit, minmax(auto, 1fr));
 
     .main-article-section {
       /*max-width: 20em;
