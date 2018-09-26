@@ -25,7 +25,7 @@
                target="_blank" 
                style="text-decoration:none">
               <figure>
-                <img v-bind:src="headline.urlToImage ? headline.urlToImage : placeholder" />
+                <img v-bind:src="headline.urlToImage ? headline.urlToImage : placeholderA" />
                 <figcaption>
                   <div><h3>{{ headline.title }}</h3></div>
                   <span>source:&nbsp;{{ headline.source.name }}</span>
@@ -53,18 +53,17 @@
       </section>
     </div>
     <!-- end of flex layout -->
-  
+
     <!-- start of grid layout -->
     <div class="grid-layout">
-      <article class="main-article" 
-               v-for="(main, index) in mainContent" 
+      <article v-for="(main, index) in mainContent.slice(0, 6)" 
                v-bind:key="index">
         <a v-bind:title="main.title"
            v-bind:href="main.url"
            target="_blank"
            style="text-decoration:none">
           <figure>
-            <img v-bind:src="main.urlToImage ? main.urlToImage : placeholder"
+            <img v-bind:src="main.urlToImage ? main.urlToImage : placeholderB"
                  v-bind:alt="main.title" />
             <figcaption>
               <div><h3>{{ main.title }}</h3></div>
@@ -73,7 +72,7 @@
         </a>
       </article>
     </div>
-  <!-- end of grid layout -->
+    <!-- end of grid layout -->
 
   </div>
   </main>
@@ -103,7 +102,8 @@ export default {
     return {
       headlineContent: [],
       mainContent: [],
-      placeholder: 'http://placehold.it/640x480?text=N/A',
+      placeholderA: 'http://placehold.it/640x480?text=N/A',
+      placeholderB: 'http://placehold.it/320x240?text=N/A',
       flickityOptions: {
         initialIndex: null,
         prevNextButtons: true,
