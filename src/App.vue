@@ -56,6 +56,9 @@
         </section>
 
       </div><!-- end of flex layout -->
+
+      <span class="div-category"></span>
+      <div class="div-line"></div>
       
       <div class="grid-layout"><!-- start of grid layout -->
         <article v-for="(main, index) in mainContent.slice(0, 6)" 
