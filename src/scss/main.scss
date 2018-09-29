@@ -20,23 +20,24 @@ html {
 }
 
 .sticky-navbar {
+  display: flex;
+  text-align: center;
+  justify-content: center;
   position: sticky;
   position: -webkit-sticky;
+  margin: 0px 0px 40px 0px;
   top: 0;
   z-index: 1;
   background-color: $white;
-  text-align: center;
-  margin: 0px 0px 40px 0px;
 
   a {
-    display: inline-flex;
-    color: $mid-gray;
+    color: $dark-gray;
     padding: 12px 18px;
     text-decoration: none;
     font-size: 20px;
   }
   a:hover {
-    color: $dark-gray;
+    color: $mid-gray;
   }
   span {
     position: relative;
@@ -54,7 +55,7 @@ html {
     transition: transform 0.25s ease-out;
   }
   span:hover::after {
-    background-color: $dark-gray;
+    background-color: $mid-gray;
     transform: scaleX(1);
     transform-origin: bottom center;
   }
@@ -63,10 +64,15 @@ html {
 .main-container {
   margin: 0 auto;
   max-width: 1200px;
+  min-width: 320px;
 
   .flex-layout {
-    display: flex;
+    display: block;
     justify-content: space-evenly;
+
+    @media (min-width: 1200px) {
+      display: flex;
+    }
 
     /*headline news in carousel set*/
     .news-headline-section {
@@ -128,7 +134,8 @@ html {
       max-width: 30em;
 
       h3 {
-        background: rgba(0,0,0,.30); 
+        background: rgba(0,0,0,.8); 
+        color: $white;
         padding: 5px 15px;
         margin-bottom: 5px;
       }
