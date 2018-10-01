@@ -2,10 +2,10 @@
   <main id="news-footer-wrapper" class="news-footer">
   	<div class="footer-container">
   	  <div class="nav-list">
-  	  	<div><a href="">Business</a></div>
-  	  	<div><a href="">Entertainment</a></div>
-  	  	<div><a href="">Health</a></div>
-  	  	<div><a href="">Science</a></div>
+  	  	<div><a v-on:click="getArticle('business')">Business</a></div>
+  	  	<div><a v-on:click="getArticle('entertainment')">Entertainment</a></div>
+  	  	<div><a v-on:click="getArticle('health')">Health</a></div>
+  	  	<div><a v-on:click="getArticle('science')">Science</a></div>
   	  	<div><a href="">Sports</a></div>
   	  	<div><a href="">Technology</a></div>
   	  </div>
@@ -15,6 +15,18 @@
   	</div>
   </main>
 </template>
+
+<script>
+import EventBus from './main.js'
+
+export default {
+	methods: {
+		getArticle: function(data) {
+			this.$root.$emit('emitted', data);
+		}
+	}
+}
+</script>
 
 <style scoped>
 .news-footer {
