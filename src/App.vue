@@ -4,7 +4,7 @@
     <news-banner></news-banner>
     <!-- sticky navigation bar-->
     <nav class="sticky-navbar">
-      <a v-on:click="getArticle('business')"><span>Business</span></a>
+      <a v-on:click="getArticle('business')" href="#category"><span>Business</span></a>
       <a v-on:click="getArticle('entertainment')"><span>Entertainment</span></a>
       <a v-on:click="getArticle('health')"><span>Health</span></a>
       <a v-on:click="getArticle('science')"><span>Science</span></a>
@@ -57,7 +57,7 @@
 
       </div><!-- end of flex layout -->
 
-      <span class="div-category"></span>
+      <span id="category" class="div-category">{{ category }}</span>
       <div class="div-line"></div>
       
       <div class="grid-layout"><!-- start of grid layout -->
@@ -91,6 +91,7 @@
 <script>
 import axios from 'axios'
 import Flickity from 'vue-flickity'
+import EventBus from './main'
 
 const BaseUrl = 'https://newsapi.org/v2/top-headlines?country=ph'
 const ApiKey = '643d0a34867c44cc9519671ec2e0dfbd'
@@ -110,6 +111,7 @@ export default {
       mainContent: [],
       placeholderA: 'http://placehold.it/640x480?text=N/A',
       placeholderB: 'http://placehold.it/320x240?text=N/A',
+      category: 'business',
       flickityOptions: {
         initialIndex: null,
         prevNextButtons: true,
@@ -125,8 +127,12 @@ export default {
   },
   mounted() {
     this.getHeadline('')
-    this.getArticle('business')
+    this.getArticle(this.category)
+    this.$root.$on('emitted', (data) => {
+      this.category = data;
+    })
   },
+
   methods: {
     getHeadline: function(section) {
       let headlineUrl = buildUrl(section);
