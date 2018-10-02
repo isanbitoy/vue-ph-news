@@ -1,5 +1,5 @@
 <template>
-  <main id="app-wrapper">
+  <main id="app">
     <!-- call news banner with flag logo -->
     <news-banner></news-banner>
     <!-- sticky navigation bar-->
@@ -19,9 +19,9 @@
         <!-- headline news in carousel-->
         <section class="news-headline-section">
           <flickity ref="flickity" 
-                    v-if="Object.keys(headlineContent).length > 0" 
+                    v-if="Object.keys(getHeadlineContent).length > 0" 
                     v-bind:options="flickityOptions">
-            <article v-for="(headline, index) in headlineContent" 
+            <article v-for="(headline, index) in getHeadlineContent" 
                      v-bind:key="index">
               <a v-bind:title="headline.title" 
                  v-bind:href="headline.url" 
@@ -91,7 +91,6 @@
 <script>
 import axios from 'axios'
 import Flickity from 'vue-flickity'
-import EventBus from './main'
 
 const BaseUrl = 'https://newsapi.org/v2/top-headlines?country=ph'
 const ApiKey = '643d0a34867c44cc9519671ec2e0dfbd'
@@ -128,9 +127,11 @@ export default {
   mounted() {
     this.getHeadline('')
     this.getArticle(this.category)
-    this.$root.$on('emitted', (data) => {
-      this.category = data;
-    })
+  },
+  computed: {
+    getHeadlineContent: function() {
+      return this.$store.state.headlineContent;
+    }
   },
 
   methods: {
@@ -138,7 +139,8 @@ export default {
       let headlineUrl = buildUrl(section);
       axios.get(headlineUrl)
         .then((response) => {
-          this.headlineContent = response.data.articles;
+          /*this.headlineContent = response.data.articles;*/
+          this.$store.commit('setAPI', response.data.articles)
         })
         .catch(error => {
           console.log(error);
