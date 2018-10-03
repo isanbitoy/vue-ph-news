@@ -45,7 +45,7 @@
         <!-- list of top stories-->
         <section class="top-story-section">
           <h3>Top Stories</h3>
-          <article v-for="(topStory, index) in headlineContent.slice(0, 9)" 
+          <article v-for="(topStory, index) in getHeadlineContent.slice(0, 9)" 
                    v-bind:key="index">
             <a v-bind:title="topStory.title" 
                v-bind:href="topStory.url" 
@@ -61,7 +61,7 @@
       <div class="div-line"></div>
       
       <div class="grid-layout"><!-- start of grid layout -->
-        <article v-for="(main, index) in mainContent.slice(0, 6)" 
+        <article v-for="(main, index) in getArticleContent.slice(0, 6)" 
                  v-bind:key="index">
           <a v-bind:title="main.title"
              v-bind:href="main.url"
@@ -89,16 +89,7 @@
 </style>
 
 <script>
-import axios from 'axios'
 import Flickity from 'vue-flickity'
-
-const BaseUrl = 'https://newsapi.org/v2/top-headlines?country=ph'
-const ApiKey = '643d0a34867c44cc9519671ec2e0dfbd'
-
-/*build the website url*/
-function buildUrl(category) {
-  return BaseUrl + "&category=" + category + "&apiKey=" + ApiKey
-}
 
 export default {
   components: {
@@ -106,8 +97,6 @@ export default {
   },
   data: function() {
     return {
-      headlineContent: [],
-      mainContent: [],
       placeholderA: 'http://placehold.it/640x480?text=N/A',
       placeholderB: 'http://placehold.it/320x240?text=N/A',
       category: 'business',
@@ -125,42 +114,24 @@ export default {
     }
   },
   mounted() {
-    this.getHeadline('')
-    this.getArticle(this.category)
+    this.$store.dispatch('LOAD_HEADLINE_NEWS', '')
+    this.$store.dispatch('LOAD_ARTICLE_NEWS', this.category)
   },
   computed: {
     getHeadlineContent: function() {
       return this.$store.state.headlineContent;
+    },
+    getArticleContent: function() {
+      return this.$store.state.articleContent;
     }
   },
 
   methods: {
-    getHeadline: function(section) {
-      let headlineUrl = buildUrl(section);
-      axios.get(headlineUrl)
-        .then((response) => {
-          /*this.headlineContent = response.data.articles;*/
-          this.$store.commit('setAPI', response.data.articles)
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
     next: function() {
       this.$refs.flickity.next();
     },
     previous: function() {
       this.$refs.flickity.previous();
-    },
-    getArticle: function(section) {
-      let articleUrl = buildUrl(section);
-      axios.get(articleUrl)
-        .then((response) => {
-          this.mainContent = response.data.articles;
-        })
-        .catch(error => {
-          console.log(error);
-        });
     }
   },
   filters: {
