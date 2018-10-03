@@ -4,11 +4,13 @@ import './registerServiceWorker'
 import FlagIcon from 'vue-flag-icon'
 import store from './store/store'
 import NewsBanner from './components/NewsBanner.vue'
+import NewsNavigation from './components/NewsNavigation.vue'
 import NewsFooter from './components/NewsFooter.vue'
 
 Vue.config.productionTip = false
 Vue.use(FlagIcon);
 Vue.component('news-banner', NewsBanner);
+Vue.component('news-navigation', NewsNavigation);
 Vue.component('news-footer', NewsFooter);
 
 new Vue({
