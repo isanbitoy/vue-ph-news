@@ -3,14 +3,16 @@
     <!-- call news banner with flag logo -->
     <news-banner></news-banner>
     <!-- sticky navigation bar-->
+    <news-navigation></news-navigation>
+    <!--
     <nav class="sticky-navbar">
-      <a v-on:click="getArticle('business')" href="#category"><span>Business</span></a>
-      <a v-on:click="getArticle('entertainment')"><span>Entertainment</span></a>
-      <a v-on:click="getArticle('health')"><span>Health</span></a>
-      <a v-on:click="getArticle('science')"><span>Science</span></a>
-      <a v-on:click="getArticle('sports')"><span>Sports</span></a>
-      <a v-on:click="getArticle('technology')"><span>Technology</span></a>
-    </nav>
+      <a v-on:click="setCategory('business')" href="#category"><span>Business</span></a>
+      <a v-on:click="setCategory('entertainment')"><span>Entertainment</span></a>
+      <a v-on:click="setCategory('health')"><span>Health</span></a>
+      <a v-on:click="setCategory('science')"><span>Science</span></a>
+      <a v-on:click="setCategory('sports')"><span>Sports</span></a>
+      <a v-on:click="setCategory('technology')"><span>Technology</span></a>
+    </nav> -->
 
     <div class="main-container">
 
@@ -114,7 +116,7 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch('LOAD_HEADLINE_NEWS', '')
+    this.$store.dispatch('LOAD_HEADLINE_NEWS')
     this.$store.dispatch('LOAD_ARTICLE_NEWS', this.category)
   },
   computed: {
@@ -127,6 +129,9 @@ export default {
   },
 
   methods: {
+    setCategory: function(category) {
+      this.$store.dispatch('LOAD_ARTICLE_NEWS', category)
+    },
     next: function() {
       this.$refs.flickity.next();
     },
