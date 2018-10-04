@@ -4,16 +4,7 @@
     <news-banner></news-banner>
     <!-- sticky navigation bar-->
     <news-navigation></news-navigation>
-    <!--
-    <nav class="sticky-navbar">
-      <a v-on:click="setCategory('business')" href="#category"><span>Business</span></a>
-      <a v-on:click="setCategory('entertainment')"><span>Entertainment</span></a>
-      <a v-on:click="setCategory('health')"><span>Health</span></a>
-      <a v-on:click="setCategory('science')"><span>Science</span></a>
-      <a v-on:click="setCategory('sports')"><span>Sports</span></a>
-      <a v-on:click="setCategory('technology')"><span>Technology</span></a>
-    </nav> -->
-
+    
     <div class="main-container">
 
       <div class="flex-layout"><!-- start of flex layout -->
@@ -59,7 +50,7 @@
 
       </div><!-- end of flex layout -->
 
-      <span id="category" class="div-category">{{ category }}</span>
+      <span id="category" class="div-category">{{ getCategory }}</span>
       <div class="div-line"></div>
       
       <div class="grid-layout"><!-- start of grid layout -->
@@ -125,6 +116,9 @@ export default {
     },
     getArticleContent: function() {
       return this.$store.state.articleContent;
+    },
+    getCategory: function() {
+      return this.$store.state.category;
     }
   },
 
