@@ -1,7 +1,7 @@
 <template>
   <main id="app">
     <!-- call news banner with flag logo -->
-    <news-banner></news-banner>
+    <!--<news-banner></news-banner>-->
     <!-- sticky navigation bar-->
     <news-navigation></news-navigation>
     
@@ -49,9 +49,11 @@
         </section>
 
       </div><!-- end of flex layout -->
-
-      <span id="category" class="div-category">{{ getCategory }}</span>
-      <div class="div-line"></div>
+      
+      <section class="div-flex">
+        <span class="div-category">{{ getCategory }}</span>
+        <div class="div-line"></div>
+      </section>
       
       <div class="grid-layout"><!-- start of grid layout -->
         <article v-for="(main, index) in getArticleContent.slice(0, 6)" 
@@ -64,7 +66,10 @@
               <img v-bind:src="main.urlToImage ? main.urlToImage : placeholderB"
                  v-bind:alt="main.title" />
               <figcaption>
-                <div><h4>{{ main.title | truncate(50) }}</h4></div>
+                <div>
+                  <h4>{{ main.title }}</h4>
+                  <p>{{ main.content | truncate(240) }}</p>
+                </div>
               </figcaption>
             </figure>
           </a>
