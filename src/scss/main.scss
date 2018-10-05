@@ -1,7 +1,7 @@
-$color: #2c3e50;
-$bg-color: #f8f8f8;
+$font-color: #2c3e50;
 $white: #ffffff;
-$dirty-white: #f2f2f2;
+$light-white: #f2f2f2;
+$mid-white: #b2b2b2;
 $light-gray: #ededed;
 $mid-gray: #a6a6a6;
 $dark-gray: #333333;
@@ -10,68 +10,29 @@ html {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: $color;
-  background-color: $bg-color;
+  color: $font-color;
+  background-color: $light-white;
 }
 *, *::before, *::after {
   box-sizing: content-box;
   padding: 0;
   margin: 0;
 }
-
-.sticky-navbar {
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  position: sticky;
-  position: -webkit-sticky;
-  margin: 0px 0px 40px 0px;
-  top: 0;
-  z-index: 1;
-  background-color: $white;
-
-  a {
-    color: $dark-gray;
-    padding: 12px 18px;
-    text-decoration: none;
-    font-size: 20px;
-  }
-  a:hover {
-    color: $mid-gray;
-  }
-  span {
-    position: relative;
-    cursor: pointer;
-  }
-  span::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    transform: scaleX(0);
-    transform-origin: bottom;
-    transition: transform 0.25s ease-out;
-  }
-  span:hover::after {
-    background-color: $mid-gray;
-    transform: scaleX(1);
-    transform-origin: bottom center;
-  }
+[v-cloak] {
+    display: none;
 }
 
 .main-container {
-  margin: 0 auto;
+  margin: 4.0em auto;
   max-width: 1200px;
   min-width: 320px;
 
   .flex-layout {
     display: block;
-    justify-content: space-evenly;
 
     @media (min-width: 1200px) {
       display: flex;
+      justify-content: space-evenly;
     }
 
     /*headline news in carousel set*/
@@ -84,7 +45,7 @@ html {
         display: flex;
         width: 100%;
         height: auto;
-        background-color: $light-gray;
+        background-color: $white;
         box-sizing: border-box;
       }
       figure {
@@ -107,7 +68,7 @@ html {
         height: 13%;
 
         h3 {
-          color: $dirty-white;
+          color: $light-white;
           padding: 5px;
         }
         h3:hover {
@@ -122,7 +83,7 @@ html {
       }
       .content-container {
         height: 3em;
-        color: $color;
+        color: $font-color;
         padding: 5px;
         line-height: 22px;
       }
@@ -140,10 +101,12 @@ html {
         margin-bottom: 5px;
       }
       article {
-        padding: 10px 15px;
+        padding: 8px 12px;
+        border-bottom: 1px solid $mid-gray;
       }
       a {
-        color: $color;
+        color: $font-color;
+        font-size: 17px;
         font-weight: bold;
         text-decoration: none;
       }
@@ -154,28 +117,35 @@ html {
   }
 }
 
-.div-line {
-  position: relative;
+.div-flex {
+  display: flex;
+  max-width: 1030px;
   margin: 60px auto;
   justify-items: center;
-  max-width: 1100px;
-}
-.div-line::after {
-  position: absolute;
-  content: '';
-  background: $light-gray;
-  bottom: 0;
-  left: 0;
-  height: 3px;
-  width: 100%;
+
+  .div-category {
+    
+  }
+  .div-line {
+    position: relative;
+  }
+  .div-line::after {
+    position: absolute;
+    content: '';
+    background: $font-color;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+  }
 }
 
 .grid-layout {
   display: grid;
   grid-gap: 2em;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
   grid-auto-rows: repeat(auto-fit, minmax(auto, 1fr));
-  margin: 80px auto;
+  margin: 0 auto;
   justify-items: center;
   max-width: 1030px;
 
@@ -185,28 +155,33 @@ html {
     figure {
       position: relative;
       width: 20em;
-      height: 15em;
+      height: 30em;
+      background: $white;
     }
     img {
       position: absolute;
       top: 0; left: 0;
       width: 100%;
-      height: 80%;
+      height: 40%;
     }
     figcaption div {
       position: absolute;
       bottom: 0; left: 0;
       width: 100%;
-      height: 20%;
-      background: rgba(0,0,0,.40); 
+      height: 60%;
 
       h4 {
-        color: $dirty-white;
-        padding: 5px;
+        color: $font-color;
+        padding: 6px;
         line-height: 20px;
       }
       h4:hover {
         text-decoration: underline;
+      }
+      p {
+        color: $mid-gray;
+        padding: 8px;
+        line-height: 24px;
       }
     }
   }
