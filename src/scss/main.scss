@@ -12,14 +12,16 @@ html {
   -moz-osx-font-smoothing: grayscale;
   color: $font-color;
   background-color: $light-white;
+  overflow-x: hidden;
 }
 *, *::before, *::after {
-  box-sizing: content-box;
+  box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
+
 [v-cloak] {
-    display: none;
+  display: none;
 }
 
 .main-container {
@@ -28,12 +30,15 @@ html {
   min-width: 320px;
 
   .flex-layout {
-    display: block;
+    display: flex;
+    justify-content: space-evenly;
 
+    /*
     @media (min-width: 1200px) {
       display: flex;
       justify-content: space-evenly;
     }
+    */
 
     /*headline news in carousel set*/
     .news-headline-section {
@@ -117,34 +122,36 @@ html {
   }
 }
 
-.div-flex {
-  display: flex;
+.div-line {
+  margin: 4.0em auto;
   max-width: 1030px;
-  margin: 60px auto;
   justify-items: center;
+  position: relative;
+  align-self: center;
 
-  .div-category {
-    
+  span {
+    color: blue;
+    font-size: 26px;
+    font-weight: bold;
+    padding-right: 25px;
   }
-  .div-line {
-    position: relative;
-  }
-  .div-line::after {
-    position: absolute;
-    content: '';
-    background: $font-color;
-    bottom: 0;
-    left: 0;
-    height: 3px;
-    width: 100%;
-  }
+}
+.div-line::after {
+  position: absolute;
+  content: '';
+  background: $font-color;
+  bottom: 0;
+  left: 0;
+  height: 6px;
+  width: 100%;
 }
 
 .grid-layout {
   display: grid;
   grid-gap: 2em;
-  grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
-  grid-auto-rows: repeat(auto-fit, minmax(auto, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(20em, auto));
+  /*grid-auto-rows: repeat(auto-fit, minmax(auto, 1fr));*/
+  grid-auto-rows: auto;
   margin: 0 auto;
   justify-items: center;
   max-width: 1030px;
