@@ -1,8 +1,6 @@
 <template>
   <main id="app">
-    <!-- call news banner with flag logo -->
-    <!--<news-banner></news-banner>-->
-    <!-- sticky navigation bar-->
+    <!-- sticky navigation bar with banner logo-->
     <news-navigation></news-navigation>
     
     <div class="main-container">
@@ -28,7 +26,7 @@
                   </figcaption>
                 </figure>
                 <div class="content-container">
-                  {{ headline.description | truncate(120) }}
+                  <p>{{ headline.description ? headline.description : headline.title | truncate(120) }}</p>
                 </div>
               </a>
             </article>
@@ -50,10 +48,9 @@
 
       </div><!-- end of flex layout -->
       
-      <section class="div-flex">
-        <span class="div-category">{{ getCategory }}</span>
-        <div class="div-line"></div>
-      </section>
+      <div class="div-line">
+        <span>{{ getCategory }}</span>
+      </div>
       
       <div class="grid-layout"><!-- start of grid layout -->
         <article v-for="(main, index) in getArticleContent.slice(0, 6)" 
@@ -104,7 +101,7 @@ export default {
         wrapAround: true,
         resize: true,
         contain: true,
-        pageDots: false,
+        pageDots: true,
         draggable: false,
         freeScroll: false,
         autoPlay: 3000
