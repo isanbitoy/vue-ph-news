@@ -1,33 +1,32 @@
 <template>
-  <main id="news-nav" class="news-nav-wrapper">
+  <nav class="news-nav-wrapper">
   	<div class="news-banner">
   	  <div><flag iso="ph" /></div>
-  	  <div class="banner-item">
+  	  <div class="banner-name">
   	  	<span>PH</span>
         <span>News</span>
   	  </div>
   	</div>
-  	<nav class="news-navbar">
-  	  <a v-on:click="setCategory('business')"><span>Business</span></a>
-      <a v-on:click="setCategory('entertainment')"><span>Entertainment</span></a>
-      <a v-on:click="setCategory('health')"><span>Health</span></a>
-      <a v-on:click="setCategory('science')"><span>Science</span></a>
-      <a v-on:click="setCategory('sports')"><span>Sports</span></a>
-      <a v-on:click="setCategory('technology')"><span>Technology</span></a>
-  	</nav>
-  </main>
+  	<ul class="nav-list">
+  	  <li><a v-on:click="setCategory('business')"><span>Business</span></a></li>
+  	  <li><a v-on:click="setCategory('entertainment')"><span>Entertainment</span></a></li>
+  	  <li><a v-on:click="setCategory('health')"><span>Health</span></a></li>
+  	  <li><a v-on:click="setCategory('science')"><span>Science</span></a></li>
+  	  <li><a v-on:click="setCategory('sports')"><span>Sports</span></a></li>
+  	  <li><a v-on:click="setCategory('technology')"><span>Technology</span></a></li>
+  	</ul>
+  </nav>
 </template>
 
 <style scoped>
-.news-nav-wrapper {
+.news-nav-wrapper { 
 	display: flex;
+	position: sticky;
 	z-index: 1;
 	width: 100%;
 	height: auto;
-	top: 0;
-	left: 0;
+	top: 0; left: 0;
 	background: #333;
-	position: sticky;
 	margin: 0 auto;
 	padding: 0.5em 0;
 }
@@ -46,42 +45,45 @@
   	border: 1px solid #fff;
 	padding: 6px;
 }
-.banner-item {
+.banner-name {
 	color: #e5e5e5;
 	margin: 0 5px;
 	cursor: pointer;
 }
-.banner-item span:nth-child(1) {
+.banner-name span:nth-child(1) {
 	font-size: 35px;
   	font-weight: bold;
   	letter-spacing: -1px;
 }
-.banner-item span:nth-child(2) {
+.banner-name span:nth-child(2) {
 	font-size: 25px;
   	letter-spacing: -2px;
 }
 
-.news-navbar {
+.nav-list {
 	flex: 1;
-	display: inline-flex;
+	display: flex;
 	padding: 0 2.0em;
  	justify-content: flex-end;
  	align-self: center;
 }
-.news-navbar a {
+.nav-list li {
+	list-style: none;
+}
+.nav-list li a {
 	color: #fff;
     margin: 0 10px;
     text-decoration: none;
     font-size: 20px;
 }
-.news-navbar a:hover {
+.nav-list li a:hover {
 	color: #e5e5e5;
 }
-.news-navbar a > span {
+.nav-list li a > span {
 	position: relative;
     cursor: pointer;
 }
-.news-navbar a > span::after {
+.nav-list li a > span::after {
 	content: '';
     position: absolute;
     width: 100%;
@@ -92,7 +94,7 @@
     transform-origin: bottom;
     transition: transform 0.25s ease-out;
 }
-.news-navbar a > span:hover::after {
+.nav-list li a > span:hover::after {
 	background-color: #ccc;
     transform: scaleX(1);
     transform-origin: bottom center;
