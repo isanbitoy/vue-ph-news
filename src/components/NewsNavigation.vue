@@ -1,5 +1,5 @@
 <template>
-  <nav class="news-nav-wrapper">
+  <header class="news-nav-wrapper">
   	<div class="news-banner">
   	  <div><flag iso="ph" /></div>
   	  <div class="banner-name">
@@ -15,7 +15,7 @@
   	  <li><a v-on:click="setCategory('sports')"><span>Sports</span></a></li>
   	  <li><a v-on:click="setCategory('technology')"><span>Technology</span></a></li>
   	</ul>
-  </nav>
+  </header>
 </template>
 
 <style scoped>
