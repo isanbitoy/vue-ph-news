@@ -24,7 +24,8 @@ html {
   display: none;
 }
 
-.main-container {
+.main-section {
+  display: block;
   margin: 4.0em auto;
   max-width: 1200px;
   min-width: 320px;
@@ -32,6 +33,8 @@ html {
   .flex-layout {
     display: flex;
     justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
 
     /*
     @media (min-width: 1200px) {
@@ -41,62 +44,67 @@ html {
     */
 
     /*headline news in carousel set*/
-    .news-headline-section {
-      flex: 1;
+    .news-headline {
+      flex: 1 100%;
       max-width: 37em;
       max-height: 30em;
 
       article {
         display: flex;
-        width: 100%;
-        height: auto;
-        background-color: $white;
-        box-sizing: border-box;
+        background: $white;
+        box-sizing: content-box;
       }
       figure {
         position: relative;
         width: 37em;
         height: 27em;
-      }
-      img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
-      figcaption div {
-        position: absolute;
-        background: rgba(0,0,0,.45); 
-        top: 0; left: 0;
-        width: 100%;
-        height: 13%;
 
-        h3 {
-          color: $light-white;
+        img {
+          position: absolute;
+          top: 0; left: 0;
+          width: 100%;
+          height: 100%;
+        }
+        figcaption div {
+          position: absolute;
+          top: 0; left: 0;
+          width: 100%;
+          height: 12%;
+          background: rgba(0,0,0,.45); 
+
+          h3 {
+            padding: 6px;
+            line-height: 20px;
+            color: $light-white;
+          }
+          h3:hover {
+            text-decoration: underline;
+          }
+        }
+        figcaption span {
+          position: absolute;
+          bottom: 0; right: 0;
           padding: 5px;
-        }
-        h3:hover {
-          text-decoration: underline;
-        }
-      }
-      figcaption span {
-        position: absolute;
-        color: $white;
-        padding: 5px;
-        bottom: 0; right: 0;
+          color: $white;
+        } 
       }
       .content-container {
+        /*width: 37em;
+        height: 3em;*/
+        width: 100%;
         height: 3em;
-        color: $font-color;
-        padding: 5px;
-        line-height: 22px;
+      
+        p {
+          color: $font-color;
+          padding: 6px;
+          line-height: 18px;
+        }
       }
     }
     
-    /* top stories in block form*/
-    .top-story-section {
-      flex: 1;
+    /* top stories in block set*/
+    .top-story {
+      flex: 1 100%;
       max-width: 30em;
 
       h3 {
@@ -108,15 +116,16 @@ html {
       article {
         padding: 8px 12px;
         border-bottom: 1px solid $mid-gray;
-      }
-      a {
-        color: $font-color;
-        font-size: 17px;
-        font-weight: bold;
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
+
+        a {
+          color: $font-color;
+          font-size: 17px;
+          font-weight: bold;
+          text-decoration: none;
+        }
+        a:hover {
+          text-decoration: underline;
+        }
       }
     }
   }
@@ -125,25 +134,14 @@ html {
 .div-line {
   margin: 4.0em auto;
   max-width: 1030px;
-  justify-items: center;
-  position: relative;
-  align-self: center;
+  background: blue;
 
   span {
-    color: blue;
-    font-size: 26px;
+    font-size: 1.5em;
     font-weight: bold;
-    padding-right: 25px;
+    padding: 6px;
+    color: $white;
   }
-}
-.div-line::after {
-  position: absolute;
-  content: '';
-  background: $font-color;
-  bottom: 0;
-  left: 0;
-  height: 6px;
-  width: 100%;
 }
 
 .grid-layout {
