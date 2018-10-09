@@ -9,7 +9,7 @@
       <li><a v-on:click="setCategory('technology')">Technology</a></li>
     </ul>
   	<div class="footer-item">
-  	  &copy;<span>&nbsp;</span>{{ year }}
+  	  <span>&copy;</span>{{ year }}
   	</div>
   </footer>
 </template>
@@ -47,6 +47,9 @@
 .footer-item {
   flex: 1;
   top: 0; right: 0;
+}
+.footer-item span {
+  margin-right: 5px;
 }
 
 </style>
