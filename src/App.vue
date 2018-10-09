@@ -1,19 +1,17 @@
 <template>
   <main id="app">
-    <!-- sticky navigation bar with banner logo-->
-    <news-navigation></news-navigation>
+  
+    <news-navigation></news-navigation><!-- sticky navigation bar with banner logo-->
     
-    <div class="main-container">
+    <section class="main-section"><!-- main section -->
 
       <div class="flex-layout"><!-- start of flex layout -->
-
-        <!-- headline news in carousel-->
-        <section class="news-headline-section">
+        <!-- news headline section -->
+        <section class="news-headline">
           <flickity ref="flickity" 
-                    v-if="Object.keys(getHeadlineContent).length > 0" 
-                    v-bind:options="flickityOptions">
-            <article v-for="(headline, index) in getHeadlineContent" 
-                     v-bind:key="index">
+                    v-bind:options="flickityOptions"
+                    v-if="Object.keys(getHeadlineContent).length > 0">
+            <article v-for="(headline, index) in getHeadlineContent" v-bind:key="index">
               <a v-bind:title="headline.title" 
                  v-bind:href="headline.url" 
                  target="_blank" 
@@ -32,9 +30,8 @@
             </article>
           </flickity>
         </section>
-
-        <!-- list of top stories-->
-        <section class="top-story-section">
+        <!-- top story section -->
+        <section class="top-story">
           <h3>Top Stories</h3>
           <article v-for="(topStory, index) in getHeadlineContent.slice(0, 9)" 
                    v-bind:key="index">
@@ -45,7 +42,6 @@
             </a>
           </article>
         </section>
-
       </div><!-- end of flex layout -->
       
       <div class="div-line">
@@ -73,9 +69,11 @@
         </article>
       </div><!-- end of grid layout -->
     
-    </div>
+    </section>
+
     <!-- news footer -->
     <news-footer></news-footer>
+    
   </main>
 </template>
 
