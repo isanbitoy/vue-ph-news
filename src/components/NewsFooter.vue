@@ -9,7 +9,9 @@
       <li><a v-on:click="setCategory('technology')">Technology</a></li>
     </ul>
   	<div class="footer-item">
-  	  <span>&copy;</span>{{ year }}
+  	  <span>&copy;</span>
+      <span>{{ year }}</span>
+      <span>All rights reserved</span>
   	</div>
   </footer>
 </template>
@@ -48,8 +50,8 @@
   flex: 1;
   top: 0; right: 0;
 }
-.footer-item span {
-  margin-right: 5px;
+.footer-item span:nth-child(2) {
+  margin: 0 6px;
 }
 
 </style>

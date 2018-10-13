@@ -1,54 +1,57 @@
 <template>
-  <main id="app">
+  <div id="app">
   
     <news-navigation></news-navigation><!-- sticky navigation bar with banner logo-->
     
-    <section class="main-section"><!-- main section -->
-
-      <div class="flex-layout"><!-- start of flex layout -->
+    <main id="main-section"><!-- main section -->
+      <div id="flex-layout"><!-- start of flex layout -->
         <!-- news headline section -->
-        <section class="news-headline">
-          <flickity ref="flickity" 
-                    v-bind:options="flickityOptions"
-                    v-if="Object.keys(getHeadlineContent).length > 0">
-            <article v-for="(headline, index) in getHeadlineContent" v-bind:key="index">
-              <a v-bind:title="headline.title" 
-                 v-bind:href="headline.url" 
-                 target="_blank" 
-                 style="text-decoration:none">
-                <figure>
-                  <img v-bind:src="headline.urlToImage ? headline.urlToImage : placeholderA" />
-                  <figcaption>
-                    <div><h3>{{ headline.title }}</h3></div>
-                    <span>source:&nbsp;{{ headline.source.name }}</span>
-                  </figcaption>
-                </figure>
-                <div class="content-container">
-                  <p>{{ headline.description ? headline.description : headline.title | truncate(120) }}</p>
-                </div>
-              </a>
-            </article>
-          </flickity>
-        </section>
+        <flickity id="news-headline"
+                  tag="section"
+                  ref="flickity" 
+                  v-bind:options="flickityOptions"
+                  v-if="Object.keys(getHeadlineContent).length > 0">
+          <article v-for="(headline, index) in getHeadlineContent" v-bind:key="index">
+            <a v-bind:title="headline.title" 
+               v-bind:href="headline.url" 
+               target="_blank" 
+               style="text-decoration:none">
+              <figure>
+                <img v-bind:src="headline.urlToImage ? headline.urlToImage : placeholderA" />
+                <figcaption>
+                  <div><h3>{{ headline.title }}</h3></div>
+                  <span>source:&nbsp;{{ headline.source.name }}</span>
+                </figcaption>
+              </figure>
+              <div id="content-container">
+                <p>{{ headline.description ? headline.description : headline.title | truncate(100) }}</p>
+              </div>
+            </a>
+          </article>
+        </flickity>
+
         <!-- top story section -->
-        <section class="top-story">
-          <h3>Top Stories</h3>
-          <article v-for="(topStory, index) in getHeadlineContent.slice(0, 9)" 
+        <section id="related-story">
+          <h3>Related Stories</h3>
+          <article v-for="(relatedStory, index) in getHeadlineContent.slice(0, 7)" 
                    v-bind:key="index">
-            <a v-bind:title="topStory.title" 
-               v-bind:href="topStory.url" 
+            <a v-bind:title="relatedStory.title" 
+               v-bind:href="relatedStory.url" 
                target="_blank">
-              <div>{{ topStory.title }}</div>
+              <div>{{ relatedStory.title }}</div>
             </a>
           </article>
         </section>
+        
       </div><!-- end of flex layout -->
       
-      <div class="div-line">
-        <span>{{ getCategory }}</span>
+      <div id="div-line"><!-- start of division line -->
+        <div>
+          <span>{{ getCategory }}</span>
+        </div>
       </div>
       
-      <div class="grid-layout"><!-- start of grid layout -->
+      <div id="grid-layout"><!-- start of grid layout -->
         <article v-for="(main, index) in getArticleContent.slice(0, 6)" 
                  v-bind:key="index">
           <a v-bind:title="main.title"
@@ -57,24 +60,23 @@
              style="text-decoration:none">
             <figure>
               <img v-bind:src="main.urlToImage ? main.urlToImage : placeholderB"
-                 v-bind:alt="main.title" />
+                   v-bind:alt="main.title" />
               <figcaption>
                 <div>
                   <h4>{{ main.title }}</h4>
-                  <p>{{ main.content | truncate(240) }}</p>
+                  <p>{{ main.content ? main.content : emptyString | truncate(240) }}</p>
                 </div>
               </figcaption>
             </figure>
           </a>
         </article>
       </div><!-- end of grid layout -->
-    
-    </section>
+    </main>
 
     <!-- news footer -->
     <news-footer></news-footer>
     
-  </main>
+  </div>
 </template>
 
 <style lang="scss">
@@ -93,13 +95,14 @@ export default {
       placeholderA: 'http://placehold.it/640x480?text=N/A',
       placeholderB: 'http://placehold.it/320x240?text=N/A',
       category: 'business',
+      emptyString: 'nothing to display',
       flickityOptions: {
         initialIndex: null,
         prevNextButtons: true,
         wrapAround: true,
         resize: true,
         contain: true,
-        pageDots: true,
+        pageDots: false,
         draggable: false,
         freeScroll: false,
         autoPlay: 3000
@@ -121,7 +124,6 @@ export default {
       return this.$store.state.category;
     }
   },
-
   methods: {
     setCategory: function(category) {
       this.$store.dispatch('LOAD_ARTICLE_NEWS', category)

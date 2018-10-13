@@ -1,4 +1,3 @@
-/*
 $font-color: #2c3e50;
 $white: #ffffff;
 $light-white: #f2f2f2;
@@ -6,83 +5,7 @@ $mid-white: #b2b2b2;
 $light-gray: #ededed;
 $mid-gray: #a6a6a6;
 $dark-gray: #333333;
-
-html {
-  font-family: 'Barlow', Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  box-sizing: border-box;
-  
-}
-*, *::before, *::after {
-  padding: 0;
-  margin: 0;
-  box-sizing: inherit;
-}
-
-#main-section {
-  display: block;
-  margin: 4.0em auto;
-  max-width: 1200px;
-  min-width: 320px;
-
-  #flex-layout {
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: row;
-    flex-wrap: wrap;
-
-    #news-headline {
-      flex: 1 100%;
-      max-width: 30em;
-      max-height: 25em;
-      margin: 1em 1em;
-  
-      figure {
-        position: relative;
-        width: 30em;
-        height: 22em;
-        overflow: hidden;
-        img {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-        figcaption div  {
-          position: absolute;
-          top: 0; left: 0;
-          width: 100%;
-          height: 12%;
-          background: rgba(0,0,0,.45);
-          h3 {
-            padding: 6px;
-            line-height: 20px;
-            color: $white;
-          }
-          h3:hover {
-            text-decoration: underline;
-          }
-        }
-        figcaption span {
-          position: absolute;
-          bottom: 0; right: 0;
-          padding: 6px;
-          color: $white;
-        }
-      }
-    }
-  }
-}
-*/
-
-$font-color: #2c3e50;
-$white: #ffffff;
-$light-white: #f2f2f2;
-$mid-white: #b2b2b2;
-$light-gray: #ededed;
-$mid-gray: #a6a6a6;
-$dark-gray: #333333;
+$sky-blue: #8ac6ef;
 
 html {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -98,7 +21,6 @@ html {
   margin: 0;
   box-sizing: inherit;
 }
-
 [v-cloak] {
   display: none;
 }
@@ -109,28 +31,17 @@ html {
   min-width: 320px;
 
   #flex-layout {
-    display: block;
+    display: flex;
     justify-content: space-evenly;
-    align-items: center;
-    /*flex-direction: column;
-    flex-wrap: wrap;*/
-
-    /*@media (min-width: 1200px) {
-      display: flex;
-      justify-content: space-evenly;
-      font-size: 0.5em;
-    }
-
-    @media (min-width: 800px) {
-      font-size: 1em;
-    }*/
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 1.0em;
     
     #news-headline {
-      flex: 1;
+      flex: 1 100%;
       max-width: 32em;
       height: 26em;
-      margin: 1em;
-
+      margin-bottom: 1.0em;
       article {
         position: relative;
         display: flex;
@@ -171,7 +82,7 @@ html {
           color: $white;
         } 
       }
-      .content-container {
+      #content-container {
         position: absolute;
         width: 100%;
         height: 15%;
@@ -184,10 +95,10 @@ html {
       }
     }
     
-    #top-story {
-      max-width: 30em;
-      margin: 1em;
-
+    #related-story {
+      flex: 1 100%;
+      max-width: 25em;
+      margin-bottom: 1.0em;
       h3 {
         background: rgba(0,0,0,.8); 
         color: $white;
@@ -197,10 +108,9 @@ html {
       article {
         padding: 8px 12px;
         border-bottom: 1px solid $mid-gray;
-
         a {
           color: $font-color;
-          font-size: 17px;
+          font-size: 16px;
           font-weight: bold;
           text-decoration: none;
         }
@@ -213,15 +123,17 @@ html {
 }
 
 #div-line {
-  margin: 4.0em auto;
+  margin: 2.5em auto;
   max-width: 1030px;
-  background: blue;
-
-  span {
-    font-size: 1.5em;
-    font-weight: bold;
-    padding: 6px;
-    color: $white;
+  div {
+    margin: 0 1.0em;
+    background: $sky-blue;
+    span {
+      font-size: 1.5em;
+      font-weight: bold;
+      padding: 6px;
+      color: $white;
+    }
   }
 }
 
@@ -229,48 +141,36 @@ html {
   display: grid;
   grid-gap: 2em;
   grid-template-columns: repeat(auto-fit, minmax(20em, auto));
-  /*grid-auto-rows: repeat(auto-fit, minmax(auto, 1fr));*/
-  grid-auto-rows: auto;
-  grid-auto-flow: dense;
+  grid-template-rows: auto;
   margin: 0 auto;
-  justify-items: center;
   max-width: 1030px;
 
   article {
-    border: 1px solid $light-gray;
-    position: relative;
-    width: 20em;
-    height: 32em;
-
-    figure {
-      position: absolute;
+    margin: 0 1.0em;
+  figure {
+    background: $white;
+    img {
+      top: 0; left: 0;
       width: 100%;
       height: auto;
-      background: $white;
-      img {
-        top: 0; left: 0;
-        width: 100%;
-        height: auto;
+    }
+    figcaption div {
+      left: 0;
+      h4 {
+        color: $font-color;
+        padding: 6px;
+        line-height: 20px;
       }
-      figcaption div {
-        left: 0;
-        width: 100%;
-        height: auto;
-        h4 {
-          color: $font-color;
-          padding: 6px;
-          line-height: 20px;
-        }
-        h4:hover {
-          text-decoration: underline;
-        }
-        p {
-          color: $mid-gray;
-          padding: 8px;
-          line-height: 24px;
-        }
+      h4:hover {
+        text-decoration: underline;
+      }
+      p {
+        color: $mid-gray;
+        padding: 8px;
+        line-height: 24px;
       }
     }
   }
+}
 }
 

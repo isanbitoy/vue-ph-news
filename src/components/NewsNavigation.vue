@@ -38,11 +38,11 @@
 }
 .flag-icon-ph {
 	font-size: 25px;
-  	border-radius: 4px;
-  	box-sizing: content-box;
-  	background-size: contain;
-  	background-repeat: no-repeat;
-  	border: 1px solid #fff;
+  border-radius: 4px;
+  box-sizing: content-box;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: 1px solid #fff;
 	padding: 6px;
 }
 .banner-name {
@@ -52,12 +52,12 @@
 }
 .banner-name span:nth-child(1) {
 	font-size: 35px;
-  	font-weight: bold;
-  	letter-spacing: -1px;
+  font-weight: bold;
+  letter-spacing: -1px;
 }
 .banner-name span:nth-child(2) {
 	font-size: 25px;
-  	letter-spacing: -2px;
+  letter-spacing: -2px;
 }
 
 .nav-list {
@@ -72,32 +72,32 @@
 }
 .nav-list li a {
 	color: #fff;
-    margin: 0 10px;
-    text-decoration: none;
-    font-size: 20px;
+  margin: 0 10px;
+  text-decoration: none;
+  font-size: 20px;
 }
 .nav-list li a:hover {
 	color: #e5e5e5;
 }
 .nav-list li a > span {
 	position: relative;
-    cursor: pointer;
+  cursor: pointer;
 }
 .nav-list li a > span::after {
 	content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    transform: scaleX(0);
-    transform-origin: bottom;
-    transition: transform 0.25s ease-out;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: bottom;
+  transition: transform 0.25s ease-out;
 }
 .nav-list li a > span:hover::after {
 	background-color: #ccc;
-    transform: scaleX(1);
-    transform-origin: bottom center;
+  transform: scaleX(1);
+  transform-origin: bottom center;
 }
 </style>
 
