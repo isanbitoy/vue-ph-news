@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "deploy": "node ./node_modules/vue-gh-pages/index.js"
   },
   "dependencies": {
     "register-service-worker": "^1.0.0",
@@ -15,12 +16,14 @@
     "@vue/cli-plugin-pwa": "^3.0.3",
     "@vue/cli-service": "^3.0.3",
     "axios": "^0.18.0",
-    "flag-icon-css": "^3.0.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "vue-flag-icon": "^1.0.6",
     "vue-flickity": "^1.1.2",
-    "vue-template-compiler": "^2.5.17"
+    "vue-gh-pages": "^1.19.0",
+    "vue-template-compiler": "^2.5.17",
+    "vue-truncate-filter": "^1.1.7",
+    "vuex": "^3.0.1"
   },
   "postcss": {
     "plugins": {
