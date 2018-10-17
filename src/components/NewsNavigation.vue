@@ -1,80 +1,45 @@
 <template>
-  <header class="news-nav-wrapper">
-  	<div class="news-banner">
-  	  <div><flag iso="ph" /></div>
-  	  <div class="banner-name">
-  	  	<span>PH</span>
-        <span>News</span>
-  	  </div>
-  	</div>
+  <nav id="news-nav-wrapper">
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle-icon"><span></span></label>
   	<ul class="nav-list">
-  	  <li><a v-on:click="setCategory('business')"><span>Business</span></a></li>
-  	  <li><a v-on:click="setCategory('entertainment')"><span>Entertainment</span></a></li>
-  	  <li><a v-on:click="setCategory('health')"><span>Health</span></a></li>
-  	  <li><a v-on:click="setCategory('science')"><span>Science</span></a></li>
-  	  <li><a v-on:click="setCategory('sports')"><span>Sports</span></a></li>
-  	  <li><a v-on:click="setCategory('technology')"><span>Technology</span></a></li>
+  	  <li><a href="#business"><span @click="setCategory('business')">Business</span></a></li>
+  	  <li><a href="#entertainment"><span @click="setCategory('entertainment')">Entertainment</span></a></li>
+  	  <li><a href="#health"><span @click="setCategory('health')">Health</span></a></li>
+  	  <li><a href="#science"><span @click="setCategory('science')">Science</span></a></li>
+  	  <li><a href="#sports"><span @click="setCategory('sports')">Sports</span></a></li>
+  	  <li><a href="#technology"><span @click="setCategory('technology')">Technology</span></a></li>
   	</ul>
-  </header>
+  </nav>
 </template>
 
 <style scoped>
-.news-nav-wrapper { 
-	display: flex;
+:root {
+  --background: rgba(0,0,0,.79);
+}
+#news-nav-wrapper { 
 	position: sticky;
 	z-index: 1;
 	width: 100%;
-	height: auto;
+  height: auto;
 	top: 0; left: 0;
-	background: #333;
+	background: var(--background);
 	margin: 0 auto;
-	padding: 0.5em 0;
+	padding: 1.5em 2em;
 }
-.news-banner {
-	flex: 1;
-	display: inline-flex;
- 	padding: 0 2.0em;
- 	align-self: center;
-}
-.flag-icon-ph {
-	font-size: 25px;
-  border-radius: 4px;
-  box-sizing: content-box;
-  background-size: contain;
-  background-repeat: no-repeat;
-  border: 1px solid #fff;
-	padding: 6px;
-}
-.banner-name {
-	color: #e5e5e5;
-	margin: 0 5px;
-	cursor: pointer;
-}
-.banner-name span:nth-child(1) {
-	font-size: 35px;
-  font-weight: bold;
-  letter-spacing: -1px;
-}
-.banner-name span:nth-child(2) {
-	font-size: 25px;
-  letter-spacing: -2px;
-}
-
 .nav-list {
-	flex: 1;
-	display: flex;
-	padding: 0 2.0em;
- 	justify-content: flex-end;
- 	align-self: center;
+  display: none;
+	padding-top: 1.5em;
+  text-align: center;
 }
 .nav-list li {
-	list-style: none;
+  padding: 6px 0;
+  list-style: none;
 }
 .nav-list li a {
 	color: #fff;
-  margin: 0 10px;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 26px;
 }
 .nav-list li a:hover {
 	color: #e5e5e5;
@@ -88,8 +53,7 @@
   position: absolute;
   width: 100%;
   height: 2px;
-  bottom: 0;
-  left: 0;
+  bottom: 0; left: 0;
   transform: scaleX(0);
   transform-origin: bottom;
   transition: transform 0.25s ease-out;
@@ -98,6 +62,60 @@
 	background-color: #ccc;
   transform: scaleX(1);
   transform-origin: bottom center;
+}
+
+.nav-toggle {
+  display: none;
+}
+.nav-toggle-icon {
+  display: flex;
+  justify-content: flex-end;
+}
+.nav-toggle-icon span,
+.nav-toggle-icon span::before,
+.nav-toggle-icon span::after {
+  position: relative;
+  display: block;
+  background: #fff;
+  height: 4px;
+  width: 2em;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.nav-toggle-icon span::before,
+.nav-toggle-icon span::after {
+  content: '';
+  position: absolute;
+}
+.nav-toggle-icon span::before {
+  bottom: 9px;
+}
+.nav-toggle-icon span::after {
+  top: 9px;
+}
+.nav-toggle:checked ~ .nav-list {
+  display: flex;
+  flex-direction: column;
+  transition: all;
+}
+
+@media (min-width: 760px) {
+  #news-nav-wrapper {
+    padding: 0.5em 2em;
+  }
+  .nav-toggle-icon {
+    display: none;
+  }
+  .nav-list,
+  .nav-toggle:checked ~ .nav-list {
+    padding: 0 2.5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .nav-list li a {
+    font-size: 19px;
+  }
 }
 </style>
 
