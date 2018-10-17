@@ -3,19 +3,17 @@
   
     <news-navigation></news-navigation><!-- sticky navigation bar with banner logo-->
     
-    <main id="main-section"><!-- main section -->
-      <div id="flex-layout"><!-- start of flex layout -->
-        <!-- news headline section -->
+    <main id="main-section">
+      <section id="flex-layout">
+        <!-- news headline -->
         <flickity id="news-headline"
-                  tag="section"
                   ref="flickity" 
                   v-bind:options="flickityOptions"
                   v-if="Object.keys(getHeadlineContent).length > 0">
           <article v-for="(headline, index) in getHeadlineContent" v-bind:key="index">
             <a v-bind:title="headline.title" 
                v-bind:href="headline.url" 
-               target="_blank" 
-               style="text-decoration:none">
+               target="_blank">
               <figure>
                 <img v-bind:src="headline.urlToImage ? headline.urlToImage : placeholderA" />
                 <figcaption>
@@ -30,8 +28,8 @@
           </article>
         </flickity>
 
-        <!-- top story section -->
-        <section id="related-story">
+        <!-- related stories -->
+        <div id="related-story">
           <h3>Related Stories</h3>
           <article v-for="(relatedStory, index) in getHeadlineContent.slice(0, 7)" 
                    v-bind:key="index">
@@ -41,23 +39,22 @@
               <div>{{ relatedStory.title }}</div>
             </a>
           </article>
-        </section>
+        </div>
         
-      </div><!-- end of flex layout -->
+      </section><!-- end of flex layout -->
       
-      <div id="div-line"><!-- start of division line -->
+      <section id="div-line"><!-- start of division line -->
         <div>
           <span>{{ getCategory }}</span>
         </div>
-      </div>
+      </section>
       
-      <div id="grid-layout"><!-- start of grid layout -->
+      <section id="grid-layout"><!-- start of grid layout -->
         <article v-for="(main, index) in getArticleContent.slice(0, 6)" 
                  v-bind:key="index">
           <a v-bind:title="main.title"
              v-bind:href="main.url"
-             target="_blank"
-             style="text-decoration:none">
+             target="_blank">
             <figure>
               <img v-bind:src="main.urlToImage ? main.urlToImage : placeholderB"
                    v-bind:alt="main.title" />
@@ -70,17 +67,16 @@
             </figure>
           </a>
         </article>
-      </div><!-- end of grid layout -->
-    </main>
+      </section><!-- end of grid layout -->
+    </main><!-- end of main section -->
 
-    <!-- news footer -->
-    <news-footer></news-footer>
+    <news-footer></news-footer><!-- news footer -->
     
   </div>
 </template>
 
 <style lang="scss">
-@import 'src/scss/main'
+  @import 'src/scss/main'
 </style>
 
 <script>
@@ -110,8 +106,10 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch('LOAD_HEADLINE_NEWS')
-    this.$store.dispatch('LOAD_ARTICLE_NEWS', this.category)
+    setTimeout(() => {
+      this.$store.dispatch('LOAD_HEADLINE_NEWS')
+      this.$store.dispatch('LOAD_ARTICLE_NEWS', this.category)
+    }, 100)
   },
   computed: {
     getHeadlineContent: function() {

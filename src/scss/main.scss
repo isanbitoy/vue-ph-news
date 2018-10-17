@@ -29,14 +29,12 @@ html {
   margin: 4.0em auto;
   max-width: 1200px;
   min-width: 320px;
-
   #flex-layout {
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
     flex-wrap: wrap;
     margin: 0 1.0em;
-    
     #news-headline {
       flex: 1 100%;
       max-width: 32em;
@@ -48,39 +46,42 @@ html {
         width: 100%;
         height: 100%;
         background: $white;
-      }
-      figure {
-        position: absolute;
-        width: 100%;
-        height: 85%;
-        overflow: hidden;
-        img {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
+        a {
+          text-decoration: none;
         }
-        figcaption div {
+        figure {
           position: absolute;
-          top: 0; left: 0;
           width: 100%;
-          height: auto;
-          background: rgba(0,0,0,.45); 
-          h3 {
-            padding: 6px;
-            line-height: 20px;
-            color: $light-white;
+          height: 85%;
+          overflow: hidden;
+          img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
           }
-          h3:hover {
-            text-decoration: underline;
+          figcaption div {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: auto;
+            background: rgba(0,0,0,.45); 
+            h3 {
+              padding: 6px;
+              line-height: 20px;
+              color: $light-white;
+            }
+            h3:hover {
+              text-decoration: underline;
+            } 
+          }
+          figcaption span {
+            position: absolute;
+            bottom: 0; right: 0;
+            padding: 6px;
+            color: $white;
           } 
         }
-        figcaption span {
-          position: absolute;
-          bottom: 0; right: 0;
-          padding: 6px;
-          color: $white;
-        } 
       }
       #content-container {
         position: absolute;
@@ -141,36 +142,39 @@ html {
   display: grid;
   grid-gap: 2em;
   grid-template-columns: repeat(auto-fit, minmax(20em, auto));
-  grid-template-rows: auto;
+  grid-auto-rows: auto;
+  grid-auto-flow: dense;
   margin: 0 auto;
   max-width: 1030px;
-
   article {
     margin: 0 1.0em;
-  figure {
-    background: $white;
-    img {
-      top: 0; left: 0;
-      width: 100%;
-      height: auto;
+    a {
+      text-decoration: none;
     }
-    figcaption div {
-      left: 0;
-      h4 {
-        color: $font-color;
-        padding: 6px;
-        line-height: 20px;
+    figure {
+      background: $white;
+      img {
+        top: 0; left: 0;
+        width: 100%;
+        height: auto;
       }
-      h4:hover {
+      figcaption div {
+        left: 0;
+        h4 {
+          color: $font-color;
+          padding: 6px;
+          line-height: 20px;
+        }
+        h4:hover {
         text-decoration: underline;
-      }
-      p {
-        color: $mid-gray;
-        padding: 8px;
-        line-height: 24px;
+        }
+        p {
+          color: $mid-gray;
+          padding: 8px;
+          line-height: 24px;
+        }
       }
     }
   }
-}
 }
 
