@@ -1,5 +1,5 @@
 <template>
-  <footer class="news-footer-wrapper">
+  <footer id="news-footer-wrapper">
     <ul class="nav-list">
       <li><a v-on:click="setCategory('business')">Business</a></li>
       <li><a v-on:click="setCategory('entertainment')">Entertainment</a></li>
@@ -8,37 +8,42 @@
       <li><a v-on:click="setCategory('sports')">Sports</a></li>
       <li><a v-on:click="setCategory('technology')">Technology</a></li>
     </ul>
-  	<div class="footer-item">
-  	  <span>&copy;</span>
-      <span>{{ year }}</span>
-      <span>All rights reserved</span>
+  	<div class="footer-list">
+      <div class="copyright">
+        <span>&copy;</span>
+        <span>{{ year }}</span>
+        <span>All rights reserved</span>
+      </div>
+      <div class="first-link">| Powered by <a v-bind:href="vueUrl" target="_blank">Vue.js</a></div>
+      <div class="second-link">| Retrieved from <a v-bind:href="newsApiUrl" target="_blank">News API</a></div>
   	</div>
   </footer>
 </template>
 
 <style scoped>
-.news-footer-wrapper {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+#news-footer-wrapper {
+  display: block;
   width: 100%;
   height: auto;
   bottom: 0; left: 0;
   margin: 0 auto;
-  padding: 1.5em 3em;
-  color: #fff;
+  padding: 1.0em 2em;
   background: #222;
 }
 .nav-list {
-  flex: 1;
-  display: block;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 .nav-list li {
   list-style: none;
   line-height: 1.5em;
+  padding: 0 12px;
 }
 .nav-list li a {
   cursor: pointer;
+  color: #fff;
   text-decoration: none;
 }
 .nav-list li a:hover {
@@ -46,12 +51,28 @@
   text-decoration: underline;
 }
 
-.footer-item {
-  flex: 1;
-  top: 0; right: 0;
+.footer-list {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #a6a6a6;
 }
-.footer-item span:nth-child(2) {
-  margin: 0 6px;
+.footer-list div,
+.copyright span:nth-child(2) {
+  padding: 0 3px;
+}
+.first-link a,
+.second-link a {
+  color: #a6a6a6;
+  text-decoration: none;
+}
+.first-link a:hover,
+.second-link a:hover {
+  color: #fff;
+  text-decoration: underline;
 }
 
 </style>
@@ -60,7 +81,9 @@
 export default {
 	data() {
 		return {
-			year: new Date().getFullYear()
+			year: new Date().getFullYear(),
+      newsApiUrl: 'https://newsapi.org/',
+      vueUrl: 'https://vuejs.org/'
 		}
 	},
 	methods: {

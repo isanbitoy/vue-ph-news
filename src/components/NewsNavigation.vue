@@ -15,7 +15,7 @@
 
 <style scoped>
 :root {
-  --background: rgba(0,0,0,.79);
+  --background: rgba(0,0,0,.76);
 }
 #news-nav-wrapper { 
 	position: sticky;
@@ -29,7 +29,6 @@
 }
 .nav-list {
   display: none;
-	padding-top: 1.5em;
   text-align: center;
 }
 .nav-list li {
@@ -39,7 +38,7 @@
 .nav-list li a {
 	color: #fff;
   text-decoration: none;
-  font-size: 26px;
+  font-size: 24px;
 }
 .nav-list li a:hover {
 	color: #e5e5e5;
@@ -108,13 +107,14 @@
   }
   .nav-list,
   .nav-toggle:checked ~ .nav-list {
-    padding: 0 2.5em;
+    /*margin: 0 2.5em;*/
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
   }
   .nav-list li a {
-    font-size: 19px;
+    /*margin: 0 1em;*/
+    font-size: 18px;
   }
 }
 </style>
