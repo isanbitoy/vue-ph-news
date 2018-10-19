@@ -1,7 +1,9 @@
 <template>
   <div id="app">
+
+    <news-header></news-header><!-- news header with banner logo -->
   
-    <news-navigation></news-navigation><!-- sticky navigation bar with banner logo-->
+    <news-navigation></news-navigation><!-- sticky navigation bar -->
     
     <main id="main-section">
       <section id="flex-layout">
@@ -52,7 +54,8 @@
       <section id="grid-layout"><!-- start of grid layout -->
         <article v-for="(main, index) in getArticleContent.slice(0, 6)" 
                  v-bind:key="index">
-          <a v-bind:title="main.title"
+          <a v-bind:id="getCategory"
+             v-bind:title="main.title"
              v-bind:href="main.url"
              target="_blank">
             <figure>
@@ -109,7 +112,7 @@ export default {
     setTimeout(() => {
       this.$store.dispatch('LOAD_HEADLINE_NEWS')
       this.$store.dispatch('LOAD_ARTICLE_NEWS', this.category)
-    }, 100)
+    }, 500)
   },
   computed: {
     getHeadlineContent: function() {

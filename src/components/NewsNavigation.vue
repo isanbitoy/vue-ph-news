@@ -107,13 +107,11 @@
   }
   .nav-list,
   .nav-toggle:checked ~ .nav-list {
-    /*margin: 0 2.5em;*/
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
   }
   .nav-list li a {
-    /*margin: 0 1em;*/
     font-size: 18px;
   }
 }

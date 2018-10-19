@@ -8,7 +8,9 @@
       </div>
   	</section>
   	<section class="news-date">
-  		<span>{{ new Date() | moment("dddd, MMMM Do, YYYY") }}</span>	
+  	  <span>Philippine Standard Time:</span>
+  	  <span>{{ date | moment("dddd, MMMM Do, YYYY") }}</span>
+  	  <span>{{ localeTime }}</span>		
   	</section>
   </header>
 </template>
@@ -20,7 +22,7 @@
 	flex-wrap: wrap;
 	width: 100%;
 	height: auto;
-	background: url(/ph-flag.jpeg);
+	background: url(../assets/ph-flag.jpeg);
 	background-position: bottom;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -44,35 +46,39 @@
 	padding: 6px;
 }
 .banner-name {
-	color: #e5e5e5;
+	color: #fff;
 	margin: 0 6px;
 	cursor: pointer;
 }
-.banner-name div:nth-child(2) {
+.banner-name div:last-child {
   font-size: 17px;
 }
-.banner-name > div span:nth-child(1) {
+.banner-name > div span:first-child {
   font-size: 35px;
   font-weight: bold;
   letter-spacing: -1px;
 }
-.banner-name > div span:nth-child(2) {
+.banner-name > div span:last-child {
   font-size: 25px;
   letter-spacing: -2px;
 }
 
 .news-date {
 	flex: 1;
-	display: inline-flex;
+	display: flex;
 	align-self: center;
 	justify-content: center;
+	flex-direction: column;
+	flex-wrap: wrap;
 	padding: 0 2.0em;
 	margin-top: 12px;
 	user-select: none;
 }
 .news-date span {
-	font-size: 1.2em;
+	font-size: 1.0em;
+	font-weight: bold;
 	color: #fff;
+	text-align: center;
 }
 
 @media screen and (max-width: 760px) {
@@ -83,11 +89,25 @@
 </style>
 
 <script>
+let moment = require('moment')
 export default {
 	data() {
 		return {
+			date: new Date(),
+			localeTime: '',
 			title: 'all about local Philippine news'
 		}
+	},
+	methods: {
+		time: function() {
+			this.localeTime = moment().format('LTS').toLocaleString()
+		}
+	},
+	mounted: function() {
+		this.interval = setInterval(this.time, 1000)
+	},
+	beforeDestroy: function() {
+		clearInterval(this.interval)
 	}
-}
+};
 </script>

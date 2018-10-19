@@ -5,7 +5,6 @@ $mid-white: #b2b2b2;
 $light-gray: #ededed;
 $mid-gray: #a6a6a6;
 $dark-gray: #333333;
-$sky-blue: #8ac6ef;
 
 html {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -15,6 +14,7 @@ html {
   background-color: $light-white;
   overflow-x: hidden;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 *, *::before, *::after {
   padding: 0;
@@ -60,6 +60,9 @@ html {
             height: 100%;
             object-fit: cover;
           }
+          img:hover {
+            opacity: 0.8;
+          }
           figcaption div {
             position: absolute;
             top: 0; left: 0;
@@ -101,7 +104,7 @@ html {
       max-width: 25em;
       margin-bottom: 1.0em;
       h3 {
-        background: rgba(0,0,0,.8); 
+        background: rgba(62,153,204,.60); 
         color: $white;
         padding: 5px 15px;
         margin-bottom: 5px;
@@ -128,11 +131,11 @@ html {
   max-width: 1030px;
   div {
     margin: 0 1.0em;
-    background: $sky-blue;
+    background: rgba(62,153,204,.60);
     span {
       font-size: 1.5em;
       font-weight: bold;
-      padding: 6px;
+      padding: 12px;
       color: $white;
     }
   }
@@ -157,6 +160,9 @@ html {
         top: 0; left: 0;
         width: 100%;
         height: auto;
+      }
+      img:hover {
+        opacity: 0.8;
       }
       figcaption div {
         left: 0;
