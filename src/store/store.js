@@ -18,7 +18,9 @@ export default new Vuex.Store({
 	state: {
 		headlineContent: [],
 		articleContent: [],
-		category: 'business'
+		category: 'business',
+		errored: false,
+		loading: true
 	},
 	actions: {
 		LOAD_HEADLINE_NEWS: function({ commit }) {
@@ -29,7 +31,9 @@ export default new Vuex.Store({
 				})
 				.catch(error => {
 					console.log(error)
-				});
+					this.errored = true
+				})
+				.finally(() => this.loading = false)
 		},
 		LOAD_ARTICLE_NEWS: function({ commit }, section) {
 			let articleUrl = buildArticleApi(section)
@@ -39,22 +43,20 @@ export default new Vuex.Store({
 				})
 				.catch(error => {
 					console.log(error)
-				});
+					this.errored = true
+				})
+				.finally(() => this.loading = false)
 		}
 	},
 	mutations: {
 		SET_HEADLINE_CONTENT:(state, content) => {
-			state.headlineContent = content;
+			state.headlineContent = content
 		},
 		SET_ARTICLE_CONTENT:(state, content) => {
-			state.articleContent = content;
+			state.articleContent = content
 		},
 		SET_CATEGORY:(state, content) => {
-			state.category = content;
+			state.category = content
 		}
-	},
-	getters: {
-
 	}
-	
 })

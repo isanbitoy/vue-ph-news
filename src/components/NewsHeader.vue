@@ -31,7 +31,7 @@
 	padding: 2.0em 0;
 }
 .news-banner {
-	flex: 1;
+	flex: 1 1 auto;
 	display: inline-flex;
  	align-self: center;
  	justify-content: center;
@@ -51,20 +51,20 @@
 	cursor: pointer;
 }
 .banner-name div:last-child {
-  font-size: 17px;
+  	font-size: 17px;
 }
 .banner-name > div span:first-child {
-  font-size: 35px;
-  font-weight: bold;
-  letter-spacing: -1px;
+  	font-size: 35px;
+  	font-weight: bold;
+  	letter-spacing: -1px;
 }
 .banner-name > div span:last-child {
-  font-size: 25px;
-  letter-spacing: -2px;
+  	font-size: 25px;
+  	letter-spacing: -2px;
 }
 
 .news-date {
-	flex: 1;
+	flex: 1 1 auto;
 	display: flex;
 	align-self: center;
 	justify-content: center;
