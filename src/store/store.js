@@ -22,6 +22,17 @@ export default new Vuex.Store({
 		errored: false,
 		loading: true
 	},
+	mutations: {
+		SET_HEADLINE_CONTENT:(state, content) => {
+			state.headlineContent = content
+		},
+		SET_ARTICLE_CONTENT:(state, content) => {
+			state.articleContent = content
+		},
+		SET_CATEGORY:(state, content) => {
+			state.category = content
+		}
+	},
 	actions: {
 		LOAD_HEADLINE_NEWS: function({ commit }) {
 			let headlineUrl = buildHeadlineApi()
@@ -46,17 +57,6 @@ export default new Vuex.Store({
 					this.errored = true
 				})
 				.finally(() => this.loading = false)
-		}
-	},
-	mutations: {
-		SET_HEADLINE_CONTENT:(state, content) => {
-			state.headlineContent = content
-		},
-		SET_ARTICLE_CONTENT:(state, content) => {
-			state.articleContent = content
-		},
-		SET_CATEGORY:(state, content) => {
-			state.category = content
 		}
 	}
 })

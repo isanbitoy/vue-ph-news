@@ -14,8 +14,7 @@
         <span>{{ year }}</span>
         <span>All rights reserved</span>
       </div>
-      <div class="first-link">| Powered by <a v-bind:href="vueUrl" target="_blank">Vue.js</a></div>
-      <div class="second-link">| Retrieved from <a v-bind:href="newsApiUrl" target="_blank">News API</a></div>
+      <div class="attr-link">| Powered by <a v-bind:href="newsApiUrl" target="_blank">NewsAPI.org</a></div>
   	</div>
   </footer>
 </template>
@@ -64,13 +63,11 @@
 .copyright span:nth-child(2) {
   padding: 0 3px;
 }
-.first-link a,
-.second-link a {
+.attr-link a {
   color: #a6a6a6;
   text-decoration: none;
 }
-.first-link a:hover,
-.second-link a:hover {
+.attr-link a:hover {
   color: #fff;
   text-decoration: underline;
 }
