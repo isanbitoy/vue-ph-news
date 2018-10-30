@@ -7,13 +7,15 @@ import store from './store/store'
 import NewsHeader from './components/NewsHeader.vue'
 import NewsNavigation from './components/NewsNavigation.vue'
 import NewsFooter from './components/NewsFooter.vue'
+import { ContentLoader } from 'vue-content-loader'
 
 Vue.config.productionTip = false
-Vue.use(FlagIcon);
-Vue.use(VueMoment);
-Vue.component('news-header', NewsHeader);
-Vue.component('news-navigation', NewsNavigation);
-Vue.component('news-footer', NewsFooter);
+Vue.use(FlagIcon)
+Vue.use(VueMoment)
+Vue.component('news-header', NewsHeader)
+Vue.component('news-navigation', NewsNavigation)
+Vue.component('news-footer', NewsFooter)
+Vue.component('content-loader', ContentLoader)
 
 new Vue({
   store,

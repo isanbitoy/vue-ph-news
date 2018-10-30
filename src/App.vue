@@ -2,13 +2,19 @@
   <div id="app">
 
     <news-header></news-header><!-- news header with banner logo -->
-  
-    <news-navigation></news-navigation><!-- sticky navigation bar -->
     
     <main id="main-section">
       <section id="flex-layout">
         <!-- news headline -->
-        <flickity id="news-headline"
+        <content-loader v-if="!access"
+          :width="512"
+          :height="416"
+          :speed="2"
+          primaryColor="#f3f3f3"
+          secondaryColor="#ecebeb">
+          <rect x="0" y="0" rx="3" ry="3" width="512" height="416" />
+        </content-loader>
+        <flickity v-else id="news-headline"
                   ref="flickity" 
                   v-bind:options="flickityOptions"
                   v-if="Object.keys(getHeadlineContent).length > 0">
@@ -45,11 +51,18 @@
         
       </section><!-- end of flex layout -->
       
-      <section id="div-line"><!-- start of division line -->
+      <section>
+        <flickity id="entertainment-news" :options="opt">
+          <article></article>
+        </flickity>
+      </section>
+
+      <!--<section id="div-line">
         <div>
           <span>{{ getCategory }}</span>
         </div>
-      </section>
+      </section>-->
+      <news-navigation></news-navigation><!-- navigation bar -->
       
       <section id="grid-layout"><!-- start of grid layout -->
         <article v-for="(main, index) in getArticleContent.slice(0, 6)" 
@@ -78,21 +91,21 @@
   </div>
 </template>
 
-<style lang="scss">
-  @import 'src/scss/main'
-</style>
-
 <script>
 import Flickity from 'vue-flickity'
+import { Carousel, Slide } from 'vue-carousel'
 
 export default {
   components: {
-    Flickity
+    Flickity,
+    Carousel,
+    Slide
   },
   data: function() {
     return {
       placeholderA: 'http://placehold.it/640x480?text=N/A',
       placeholderB: 'http://placehold.it/320x240?text=N/A',
+      access: null,
       category: 'business',
       emptyString: 'nothing to display',
       flickityOptions: {
@@ -105,14 +118,18 @@ export default {
         draggable: false,
         freeScroll: false,
         autoPlay: 3000
+      },
+      opt: {
+        wrapAround: true
       }
     }
   },
   mounted() {
+    this.$store.dispatch('LOAD_HEADLINE_NEWS')
+    this.$store.dispatch('LOAD_ARTICLE_NEWS', this.category)
     setTimeout(() => {
-      this.$store.dispatch('LOAD_HEADLINE_NEWS')
-      this.$store.dispatch('LOAD_ARTICLE_NEWS', this.category)
-    }, 500)
+      this.access = 'accessible'
+    }, 1000)
   },
   computed: {
     getHeadlineContent: function() {
@@ -121,14 +138,15 @@ export default {
     getArticleContent: function() {
       return this.$store.state.articleContent;
     },
+    getEntertainmentContent: function() {
+      return this.$store.state.entertainmentContent;
+    }
+    /*
     getCategory: function() {
       return this.$store.state.category;
-    }
+    }*/
   },
   methods: {
-    setCategory: function(category) {
-      this.$store.dispatch('LOAD_ARTICLE_NEWS', category)
-    },
     next: function() {
       this.$refs.flickity.next();
     },
@@ -144,6 +162,10 @@ export default {
       return value;
     }
   }
-}
+};
 </script>
+
+<style lang="scss">
+@import 'src/scss/main'
+</style>
 
