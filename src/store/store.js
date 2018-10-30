@@ -35,10 +35,6 @@ export default new Vuex.Store({
 		SET_ENTERTAINMENT_CONTENT:(state, content) => {
 			state.entertainmentContent = content
 		}
-		/*
-		SET_CATEGORY:(state, content) => {
-			state.category = content
-		}*/
 	},
 	actions: {
 		LOAD_HEADLINE_NEWS: function({ commit }) {
