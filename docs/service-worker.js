@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.076ddba99949aea82243e347b86f50d8.js"
+  "/precache-manifest.324263d74966254cb6dc1c5a3840cef2.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "vue-ph-news"});

@@ -31,7 +31,7 @@
         <!-- related stories -->
         <div id="related-story">
           <h3>Related Stories</h3>
-          <article v-for="(relatedStory, index) in getHeadlineContent.slice(0, 9)" 
+          <article v-for="(relatedStory, index) in getHeadlineContent.slice(0, 8)" 
                    :key="index">
             <a :title="relatedStory.title" 
                :href="relatedStory.url" 
