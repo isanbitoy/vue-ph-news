@@ -31,7 +31,7 @@
         <!-- related stories -->
         <div id="related-story">
           <h3>Related Stories</h3>
-          <article v-for="(relatedStory, index) in getHeadlineContent.slice(0, 7)" 
+          <article v-for="(relatedStory, index) in getHeadlineContent.slice(0, 9)" 
                    :key="index">
             <a :title="relatedStory.title" 
                :href="relatedStory.url" 
@@ -42,6 +42,7 @@
         </div>
       </section>
       
+      <!-- entertainment news -->
       <section id="wrap-layout">
         <h3>Entertainment News</h3>
         <flickity id="news-entertainment" 
@@ -63,7 +64,8 @@
 
       <news-navigation></news-navigation><!-- navigation bar -->
       
-      <section id="grid-layout"><!-- start of grid layout -->
+      <!-- start of grid layout -->
+      <section id="grid-layout">
         <article v-for="(main, index) in getArticleContent.slice(0, 6)" 
                  :key="index">
           <a :id="getCategory"
@@ -82,8 +84,7 @@
             </figure>
           </a>
         </article>
-      </section><!-- end of grid layout -->
-
+      </section>
     </main><!-- end of main section -->
 
     <news-footer></news-footer><!-- news footer -->

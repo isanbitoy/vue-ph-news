@@ -109,7 +109,7 @@ html {
         margin-bottom: 5px;
       }
       article {
-        padding: 8px 12px;
+        padding: 8px 2px;
         border-bottom: 1px solid $mid-gray;
         a {
           color: $font-color;
@@ -134,6 +134,7 @@ html {
         padding: 6px;
         color: $white;
         z-index: 1;
+        user-select: none;
     }
     #news-entertainment {
       margin: 0 1em;
@@ -142,6 +143,7 @@ html {
         display: inline;
         width: 15em;
         height: 13em;
+        margin: 0 2px;
         a {
           text-decoration: none;
         }
@@ -180,51 +182,49 @@ html {
       }
     }
   }
-
-
-}
-
-#grid-layout {
-  display: grid;
-  grid-gap: 2em;
-  grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
-  grid-auto-rows: auto;
-  grid-auto-flow: dense;
-  margin: 0 auto;
-  max-width: 1030px;
-
-  article {
-    margin: 0 1.0em;
-    a {
-      text-decoration: none;
-    }
-    figure {
-      background: $white;
-      img {
-        top: 0; left: 0;
-        width: 100%;
-        height: auto;
+  #grid-layout {
+    display: grid;
+    grid-gap: 2em;
+    grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
+    grid-auto-rows: auto;
+    grid-auto-flow: dense;
+    margin: 0 auto;
+    max-width: 1030px;
+    article {
+      margin: 0 1.0em;
+      a {
+        text-decoration: none;
       }
-      img:hover {
-        opacity: 0.8;
-      }
-      figcaption div {
-        left: 0;
-        h4 {
-          color: $font-color;
-          padding: 6px;
-          line-height: 20px;
+      figure {
+        background: $white;
+        img {
+          top: 0; left: 0;
+          width: 100%;
+          height: auto;
         }
-        h4:hover {
-        text-decoration: underline;
+        img:hover {
+          opacity: 0.8;
         }
-        p {
-          color: $mid-gray;
-          padding: 8px;
-          line-height: 24px;
+        figcaption div {
+          left: 0;
+          h4 {
+            color: $font-color;
+            padding: 6px;
+            line-height: 20px;
+          }
+          h4:hover {
+            text-decoration: underline;
+          }
+          p {
+            color: $mid-gray;
+            padding: 8px;
+            line-height: 24px;
+          }
         }
       }
     }
   }
 }
+
+
 

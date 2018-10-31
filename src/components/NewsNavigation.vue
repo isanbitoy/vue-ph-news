@@ -14,14 +14,13 @@ export default {
   methods: {
     setCategory: function(category) {
       this.$store.dispatch('LOAD_ARTICLE_NEWS', category)
-      /*this.$store.commit('SET_CATEGORY', category)*/
     }
   }
 };
 </script>
 <style>
 #news-nav-wrapper {
-  margin: 2.5em auto;
+  margin: 3em auto;
   max-width: 1030px;
 }
 .breadcrumb {
