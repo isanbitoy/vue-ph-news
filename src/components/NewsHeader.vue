@@ -23,13 +23,7 @@
 	width: 100%;
 	height: auto;
 	background: #222;
-	/*background: url(../assets/ph-flag.jpeg);
-	background-position: bottom;
-	background-repeat: no-repeat;
-	background-size: cover;
-	top: 0; left: 0;*/
-	margin: 0 auto;
-	padding: 2.0em 0;
+	padding: 1.0em 0;
 }
 .news-banner {
 	flex: 1 1 auto;

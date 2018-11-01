@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './index/App.vue'
+import App from './App.vue'
 import './registerServiceWorker'
 import FlagIcon from 'vue-flag-icon'
 import VueMoment from 'vue-moment'
